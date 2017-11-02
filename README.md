@@ -12,9 +12,9 @@ Configuration:
 
 Skinners (PostPlayMode):
   
-  - There is a script-nextup-notification-PostPlayInfo.xml located in default/1080i/ simply copy this to your skin folder and adjust it how you like it. 
+  - There is a script-navigation-nextupnotification-PostPlayInfo.xml located in default/1080i/ simply copy this to your skin folder and adjust it how you like it. 
   
-      - script-nextup-notification-PostPlayInfo.xml
+      - script-navigation-nextup-notification-PostPlayInfo.xml
          - 101 - Previous Episode Button
          - 102 - Next Episode Button
          - 400 - Next Up List 
@@ -55,11 +55,11 @@ Skinners (PostPlayMode):
 
 Skinners (Non PostPlayMode):
   
-  - There is a script-nextup-notification-NextUpInfo.xml and script-nextup-notification-StillWatchingInfo.xml file located in default/1080i/ simply copy this to your skin folder and adjust it how you like it. 
-  - There is now script-nextup-notification-UnwatchedInfo.xml which by default shows a logo of an unwatched episode after 10 minutes for 10 seconds
+  - There is a script-navigation-nextup-notification-NextUpInfo.xml and script-navigation-nextup-notification-StillWatchingInfo.xml file located in default/1080i/ simply copy this to your skin folder and adjust it how you like it. 
+  - There is now script-navigation-nextup-notification-UnwatchedInfo.xml which by default shows a logo of an unwatched episode after 10 minutes for 10 seconds
       Controls Available:
   
-      - script-nextup-notification-NextUpInfo.xml
+      - script-navigation-nextup-notification-NextUpInfo.xml
           - 3000 - Title
           - 3001 - Plot
           - 3002 - Season/Episode
@@ -78,7 +78,7 @@ Skinners (Non PostPlayMode):
           - 3016 - Episode Number
           - 3018 - Play Count
           
-      - script-nextup-notification-StillWatchingInfo.xml
+      - script-navigation-nextup-notification-StillWatchingInfo.xml
           - 4000 - Label
           - 4001 - TV Show Poster
           - 4002 - Episode Thumb
@@ -96,7 +96,7 @@ Skinners (Non PostPlayMode):
           - 4014 - TV Show ClearArt
           - 4018 - Play Count
 
-      - script-nextup-notification-UnwatchedInfo.xml
+      - script-navigation-nextup-notification-UnwatchedInfo.xml
           - 5000 - Label
           - 5001 - Plot
           - 5002 - Season/Episode
