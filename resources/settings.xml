@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings></settings>
+<settings>
+    <category label="30003">
+        <setting id="showPostPlay" type="bool" label="30022" default="true" visible="true" enable="true"/>
+    </category>
+</settings>
