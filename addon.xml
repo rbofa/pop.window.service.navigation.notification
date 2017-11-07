@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<addon id="pop.window.service.navigation.notification" name="Nextup Service Navigation Notification" provider-name="rbofa" version="1.0.0">
+    <requires>
+        <import addon="xbmc.python" version="2.20.0"/>
+    </requires>
+    <extension library="service.py" point="xbmc.service" start="login"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">Provides a post play screen or netflix style nextup pop up notification or both together!</summary>
+        <disclaimer lang="en">This plugin is a standalone plugin.</disclaimer>
+           <platform>all</platform>
+        <language/>
+        <assets>
+                <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
