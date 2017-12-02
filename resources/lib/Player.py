@@ -3,6 +3,7 @@ import xbmc
 import xbmcgui
 import library
 import sys
+from ClientInformation import ClientInformation
 
 if sys.version_info < (2, 7):
     import simplejson as json
@@ -16,6 +17,7 @@ class Player(xbmc.Player):
     _shared_state = {}
 
     xbmcplayer = xbmc.Player()
+    clientInfo = ClientInformation()
 
     def __init__(self, *args):
         self.__dict__ = self._shared_state
