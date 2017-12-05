@@ -36,3 +36,7 @@ class Player(xbmc.Player):
     def __init__(self, *args):
         self.__dict__ = self._shared_state
     self.logMsg("Starting playback monitor service", 1)
+
+    def logMsg(self, msg, lvl=1):
+        self.className = self.__class__.__name__
+    utils.logMsg("%s %s" % (self.addonName, self.className), msg, int(lvl))
