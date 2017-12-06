@@ -40,3 +40,13 @@ class Player(xbmc.Player):
     def logMsg(self, msg, lvl=1):
         self.className = self.__class__.__name__
     utils.logMsg("%s %s" % (self.addonName, self.className), msg, int(lvl))
+
+    def json_query(self, query, ret):
+        try:
+            xbmc_request = json.dumps(query)
+            result = xbmc.executeJSONRPC(xbmc_request)
+            result = unicode(result, 'utf-8', errors='ignore')
+            return json.loads(result)
+        except:
+            xbmc_request = json.dumps(query)
+            return json.loads(result)
