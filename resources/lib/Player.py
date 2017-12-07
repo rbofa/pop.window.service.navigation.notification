@@ -46,7 +46,14 @@ class Player(xbmc.Player):
             xbmc_request = json.dumps(query)
             result = xbmc.executeJSONRPC(xbmc_request)
             result = unicode(result, 'utf-8', errors='ignore')
-            return json.loads(result)
+            if ret:
+                return json.loads(result)['result']
+
+            else:
+                return json.loads(result)
         except:
             xbmc_request = json.dumps(query)
+            result = xbmc.executeJSONRPC(xbmc_request)
+            result = unicode(result, 'utf-8', errors='ignore')
+            self.logMsg(json.loads(result), 1)
             return json.loads(result)
