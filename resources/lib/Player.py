@@ -57,3 +57,10 @@ class Player(xbmc.Player):
             result = unicode(result, 'utf-8', errors='ignore')
             self.logMsg(json.loads(result), 1)
             return json.loads(result)
+
+    def getNowPlaying(self):
+        # Get the active player
+        result = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Player.GetActivePlayers"}')
+        result = unicode(result, 'utf-8', errors='ignore')
+        self.logMsg("Got active player " + result, 2)
+        result = json.loads(result)
