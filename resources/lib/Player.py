@@ -70,4 +70,18 @@ class Player(xbmc.Player):
             result = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Player.GetActivePlayers"}')
             result = unicode(result, 'utf-8', errors='ignore')
             self.logMsg("Got active player " + result, 2)
-            result = json.loads(result)s
+            result = json.loads(result)
+
+        if 'result' in result and result["result"][0] is not None:
+            playerid = result["result"][0]["playerid"]
+
+            # Get details of the playing media
+            self.logMsg("Getting details of now  playing media", 1)
+            result = xbmc.executeJSONRPC(
+                '{"jsonrpc": "2.0", "id": 1, "method": "Player.GetItem", "params": {"playerid": ' + str(
+                    playerid) + ', "properties": ["showtitle", "tvshowid", "episode", "season", "playcount","genre"] } }')
+            result = unicode(result, 'utf-8', errors='ignore')
+            self.logMsg("Got details of now playing media" + result, 2)
+
+            result = json.loads(result)
+            return result
