@@ -85,3 +85,10 @@ class Player(xbmc.Player):
 
             result = json.loads(result)
             return result
+
+    def onPlayBackStarted(self):
+        # Will be called when xbmc starts playing a file
+        self.postplaywindow = None
+        WINDOW = xbmcgui.Window(10000)
+        WINDOW.clearProperty("NextUpNotification.NowPlaying.DBID")
+        WINDOW.clearProperty("NextUpNotification.NowPlaying.Type")
