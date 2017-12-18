@@ -92,3 +92,7 @@ class Player(xbmc.Player):
         WINDOW = xbmcgui.Window(10000)
         WINDOW.clearProperty("NextUpNotification.NowPlaying.DBID")
         WINDOW.clearProperty("NextUpNotification.NowPlaying.Type")
+        # Get the active player
+        result = self.getNowPlaying()
+        if 'result' in result:
+            itemtype = result["result"]["item"]["type"]
