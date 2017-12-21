@@ -96,3 +96,8 @@ class Player(xbmc.Player):
         result = self.getNowPlaying()
         if 'result' in result:
             itemtype = result["result"]["item"]["type"]
+            if itemtype == "episode":
+                itemtitle = result["result"]["item"]["showtitle"]
+                WINDOW.setProperty("NextUpNotification.NowPlaying.Type", itemtype)
+                tvshowid = result["result"]["item"]["tvshowid"]
+                WINDOW.setProperty("NextUpNotification.NowPlaying.DBID", str(tvshowid))
