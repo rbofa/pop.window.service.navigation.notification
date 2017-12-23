@@ -101,3 +101,10 @@ class Player(xbmc.Player):
                 WINDOW.setProperty("NextUpNotification.NowPlaying.Type", itemtype)
                 tvshowid = result["result"]["item"]["tvshowid"]
                 WINDOW.setProperty("NextUpNotification.NowPlaying.DBID", str(tvshowid))
+                if int(tvshowid) == -1:
+                    tvshowid = self.showtitle_to_id(title=itemtitle)
+                    self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
+                    WINDOW.setProperty("NextUpNotification.NowPlaying.DBID", str(tvshowid))
+
+
+
