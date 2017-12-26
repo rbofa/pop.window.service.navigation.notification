@@ -111,4 +111,12 @@ class Player(xbmc.Player):
                 WINDOW.setProperty("NextUpNotification.NowPlaying.DBID", str(id))
 
 
-
+    def showtitle_to_id(self, title):
+        query = {
+            "jsonrpc": "2.0",
+            "method": "VideoLibrary.GetTVShows",
+            "params": {
+                "properties": ["title"]
+            },
+            "id": "libTvShows"
+        }
