@@ -120,3 +120,13 @@ class Player(xbmc.Player):
             },
             "id": "libTvShows"
         }
+        try:
+            json_result = json.loads(xbmc.executeJSONRPC(json.dumps(query, encoding='utf-8')))
+            if 'result' in json_result and 'tvshows' in json_result['result']:
+                json_result = json_result['result']['tvshows']
+                for tvshow in json_result:
+                    if tvshow['label'] == title:
+                        return tvshow['tvshowid']
+            return '-1'
+        except Exception:
+            return '-1'
