@@ -130,3 +130,8 @@ class Player(xbmc.Player):
             return '-1'
         except Exception:
             return '-1'
+
+    def get_episode_id(self, showid, showseason, showepisode):
+        showseason = int(showseason)
+        showepisode = int(showepisode)
+        episodeid = 0
