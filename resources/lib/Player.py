@@ -135,3 +135,13 @@ class Player(xbmc.Player):
         showseason = int(showseason)
         showepisode = int(showepisode)
         episodeid = 0
+
+        query = {
+            "jsonrpc": "2.0",
+            "method": "VideoLibrary.GetEpisodes",
+            "params": {
+                "properties": ["season", "episode"],
+                "tvshowid": int(showid)
+            },
+            "id": "1"
+        }
