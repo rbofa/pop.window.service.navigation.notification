@@ -145,3 +145,5 @@ class Player(xbmc.Player):
             },
             "id": "1"
         }
+        try:
+            json_result = json.loads(xbmc.executeJSONRPC(json.dumps(query, encoding='utf-8')))
