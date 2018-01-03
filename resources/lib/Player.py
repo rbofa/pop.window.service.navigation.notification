@@ -147,3 +147,5 @@ class Player(xbmc.Player):
         }
         try:
             json_result = json.loads(xbmc.executeJSONRPC(json.dumps(query, encoding='utf-8')))
+            if 'result' in json_result and 'episodes' in json_result['result']:
+                json_result = json_result['result']['episodes']
