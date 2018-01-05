@@ -149,3 +149,8 @@ class Player(xbmc.Player):
             json_result = json.loads(xbmc.executeJSONRPC(json.dumps(query, encoding='utf-8')))
             if 'result' in json_result and 'episodes' in json_result['result']:
                 json_result = json_result['result']['episodes']
+                for episode in json_result:
+                    if episode['season'] == showseason and episode['episode'] == showepisode:
+                        if 'episodeid' in episode:
+                            episodeid = episode['episodeid']
+            return episodeid
