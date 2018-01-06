@@ -154,3 +154,5 @@ class Player(xbmc.Player):
                         if 'episodeid' in episode:
                             episodeid = episode['episodeid']
             return episodeid
+        except Exception:
+            return episodeid
