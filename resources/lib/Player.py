@@ -156,3 +156,8 @@ class Player(xbmc.Player):
             return episodeid
         except Exception:
             return episodeid
+
+    def onPlayBackEnded(self):
+        self.logMsg("playback ended ", 2)
+        if self.postplaywindow is not None:
+            self.showPostPlay()
