@@ -161,3 +161,7 @@ class Player(xbmc.Player):
         self.logMsg("playback ended ", 2)
         if self.postplaywindow is not None:
             self.showPostPlay()
+
+    def findNextEpisode(self, result, currentFile, includeWatched):
+        self.logMsg("Find next episode called", 1)
+        position = 0
