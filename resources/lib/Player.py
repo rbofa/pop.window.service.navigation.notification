@@ -165,3 +165,10 @@ class Player(xbmc.Player):
     def findNextEpisode(self, result, currentFile, includeWatched):
         self.logMsg("Find next episode called", 1)
         position = 0
+        for episode in result["result"]["episodes"]:
+            # find position of current episode
+            if self.currentepisodeid == episode["episodeid"]:
+                # found a match so add 1 for the next and get out of here
+                position += 1
+                break
+            position += 1
