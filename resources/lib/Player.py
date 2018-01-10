@@ -172,3 +172,6 @@ class Player(xbmc.Player):
                 position += 1
                 break
             position += 1
+        # check if it may be a multi-part episode
+        while result["result"]["episodes"][position]["file"] == currentFile:
+            position += 1
