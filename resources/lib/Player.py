@@ -175,3 +175,13 @@ class Player(xbmc.Player):
         # check if it may be a multi-part episode
         while result["result"]["episodes"][position]["file"] == currentFile:
             position += 1
+
+        # now return the episode
+        self.logMsg("Find next episode found next episode in position: " + str(position), 1)
+        try:
+            episode = result["result"]["episodes"][position]
+        except:
+            # no next episode found
+            episode = None
+
+        return episode
