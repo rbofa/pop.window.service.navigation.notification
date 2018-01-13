@@ -185,3 +185,13 @@ class Player(xbmc.Player):
             episode = None
 
         return episode
+
+    def findCurrentEpisode(self, result, currentFile):
+        self.logMsg("Find current episode called", 1)
+        position = 0
+        for episode in result["result"]["episodes"]:
+            # find position of current episode
+            if self.currentepisodeid == episode["episodeid"]:
+                # found a match so get out of here
+                break
+            position += 1
