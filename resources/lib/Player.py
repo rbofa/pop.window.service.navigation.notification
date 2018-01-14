@@ -195,3 +195,13 @@ class Player(xbmc.Player):
                 # found a match so get out of here
                 break
             position += 1
+
+        # now return the episode
+        self.logMsg("Find current episode found episode in position: " + str(position), 1)
+        try:
+            episode = result["result"]["episodes"][position]
+        except:
+            # no next episode found
+            episode = None
+
+        return episode
