@@ -205,3 +205,9 @@ class Player(xbmc.Player):
             episode = None
 
         return episode
+
+    def displayRandomUnwatched(self):
+        # Get the active player
+        result = self.getNowPlaying()
+        if 'result' in result:
+            itemtype = result["result"]["item"]["type"]
