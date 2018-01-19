@@ -211,3 +211,6 @@ class Player(xbmc.Player):
         result = self.getNowPlaying()
         if 'result' in result:
             itemtype = result["result"]["item"]["type"]
+            if itemtype == "episode":
+                # playing an episode so find a random unwatched show from the same genre
+                genres = result["result"]["item"]["genre"]
