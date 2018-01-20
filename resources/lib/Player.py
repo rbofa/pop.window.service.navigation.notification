@@ -214,3 +214,7 @@ class Player(xbmc.Player):
             if itemtype == "episode":
                 # playing an episode so find a random unwatched show from the same genre
                 genres = result["result"]["item"]["genre"]
+                if genres:
+                    genretitle = genres[0]
+                    self.logMsg("Looking up tvshow for genre " + genretitle, 2)
+                    tvshow = utils.getJSON('VideoLibrary.GetTVShows', '{ "sort": { "order": "descending", "method": "random" }, "filter": {"and": [{"operator":"is", "field":"genre", "value":"%s"}, {"operator":"is", "field":"playcount", "value":"0"}]}, "properties": [ %s ],"limits":{"end":1} }' % (genretitle, self.fields_tvshows))
