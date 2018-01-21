@@ -218,3 +218,8 @@ class Player(xbmc.Player):
                     genretitle = genres[0]
                     self.logMsg("Looking up tvshow for genre " + genretitle, 2)
                     tvshow = utils.getJSON('VideoLibrary.GetTVShows', '{ "sort": { "order": "descending", "method": "random" }, "filter": {"and": [{"operator":"is", "field":"genre", "value":"%s"}, {"operator":"is", "field":"playcount", "value":"0"}]}, "properties": [ %s ],"limits":{"end":1} }' % (genretitle, self.fields_tvshows))
+                if not tvshow:
+                    self.logMsg("Looking up tvshow without genre", 2)
+                    tvshow = utils.getJSON('VideoLibrary.GetTVShows', '{ "sort": { "order": "descending", "method": "random" }, "filter": {"and": [{"operator":"is", "field":"playcount", "value":"0"}]}, "properties": [ %s ],"limits":{"end":1} }' % self.fields_tvshows)
+                self.logMsg("Got tvshow" + str(tvshow), 2)
+                tvshowid = tvshow[0]["tvshowid"]
