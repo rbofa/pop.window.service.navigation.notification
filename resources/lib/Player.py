@@ -223,3 +223,7 @@ class Player(xbmc.Player):
                     tvshow = utils.getJSON('VideoLibrary.GetTVShows', '{ "sort": { "order": "descending", "method": "random" }, "filter": {"and": [{"operator":"is", "field":"playcount", "value":"0"}]}, "properties": [ %s ],"limits":{"end":1} }' % self.fields_tvshows)
                 self.logMsg("Got tvshow" + str(tvshow), 2)
                 tvshowid = tvshow[0]["tvshowid"]
+                if int(tvshowid) == -1:
+                    tvshowid = self.showtitle_to_id(title=itemtitle)
+                    self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
+                episode = utils.getJSON('VideoLibrary.GetEpisodes', '{ "tvshowid": %d, "sort": {"method":"episode"}, "filter": {"and": [ {"field": "playcount", "operator": "lessthan", "value":"1"}, {"field": "season", "operator": "greaterthan", "value": "0"} ]}, "properties": [ %s ], "limits":{"end":1}}' % (tvshowid, self.fields_episodes))
