@@ -227,3 +227,17 @@ class Player(xbmc.Player):
                     tvshowid = self.showtitle_to_id(title=itemtitle)
                     self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
                 episode = utils.getJSON('VideoLibrary.GetEpisodes', '{ "tvshowid": %d, "sort": {"method":"episode"}, "filter": {"and": [ {"field": "playcount", "operator": "lessthan", "value":"1"}, {"field": "season", "operator": "greaterthan", "value": "0"} ]}, "properties": [ %s ], "limits":{"end":1}}' % (tvshowid, self.fields_episodes))
+
+                if episode:
+                    self.logMsg("Got details of next up episode %s" % str(episode), 2)
+                    addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
+                    unwatchedPage = UnwatchedInfo("script-nextup-notification-UnwatchedInfo.xml",
+                                                  addonSettings.getAddonInfo('path'), "default", "1080i")
+                    unwatchedPage.setItem(episode[0])
+                    self.logMsg("Calling display unwatched", 2)
+                    unwatchedPage.show()
+                    monitor = xbmc.Monitor()
+                    monitor.waitForAbort(10)
+                    self.logMsg("Calling close unwatched", 2)
+                    unwatchedPage.close()
+                    del monitor
