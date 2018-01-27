@@ -241,3 +241,9 @@ class Player(xbmc.Player):
                     self.logMsg("Calling close unwatched", 2)
                     unwatchedPage.close()
                     del monitor
+
+    def postPlayPlayback(self):
+        currentFile = xbmc.Player().getPlayingFile()
+
+    # Get the active player
+    result = self.getNowPlaying()
