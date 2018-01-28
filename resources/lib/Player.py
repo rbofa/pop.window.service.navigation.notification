@@ -247,3 +247,7 @@ class Player(xbmc.Player):
 
     # Get the active player
     result = self.getNowPlaying()
+    if 'result' in result:
+        itemtype = result["result"]["item"]["type"]
+        addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
+        playMode = addonSettings.getSetting("autoPlayMode")
