@@ -251,3 +251,10 @@ class Player(xbmc.Player):
         itemtype = result["result"]["item"]["type"]
         addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
         playMode = addonSettings.getSetting("autoPlayMode")
+        currentepisodenumber = result["result"]["item"]["episode"]
+        currentseasonid = result["result"]["item"]["season"]
+        currentshowtitle = result["result"]["item"]["showtitle"]
+        tvshowid = result["result"]["item"]["tvshowid"]
+        shortplayMode = addonSettings.getSetting("shortPlayMode")
+        shortplayNotification= addonSettings.getSetting("shortPlayNotification")
+        shortplayLength = int(addonSettings.getSetting("shortPlayLength")) * 60
