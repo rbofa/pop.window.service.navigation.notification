@@ -258,3 +258,8 @@ class Player(xbmc.Player):
         shortplayMode = addonSettings.getSetting("shortPlayMode")
         shortplayNotification= addonSettings.getSetting("shortPlayNotification")
         shortplayLength = int(addonSettings.getSetting("shortPlayLength")) * 60
+
+    # Try to get tvshowid by showtitle from kodidb if tvshowid is -1 like in strm streams which are added to kodi db
+    if int(tvshowid) == -1:
+        tvshowid = self.showtitle_to_id(title=currentshowtitle)
+        self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
