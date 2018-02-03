@@ -263,3 +263,11 @@ class Player(xbmc.Player):
     if int(tvshowid) == -1:
         tvshowid = self.showtitle_to_id(title=currentshowtitle)
         self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
+
+        if (itemtype == "episode"):
+            # Get current episodeid
+            currentepisodeid = self.get_episode_id(showid=str(tvshowid), showseason=currentseasonid, showepisode=currentepisodenumber)
+        else:
+            # wtf am i doing here error.. ####
+            self.logMsg("Error: cannot determine if episode", 1)
+            return
