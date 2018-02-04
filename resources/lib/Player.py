@@ -271,3 +271,9 @@ class Player(xbmc.Player):
             # wtf am i doing here error.. ####
             self.logMsg("Error: cannot determine if episode", 1)
             return
+
+        self.currentepisodeid = currentepisodeid
+        self.logMsg("Getting details of next up episode for tvshow id: " + str(tvshowid), 1)
+        if self.currenttvshowid != tvshowid:
+            self.currenttvshowid = tvshowid
+            self.playedinarow = 1
