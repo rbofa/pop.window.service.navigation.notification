@@ -277,3 +277,10 @@ class Player(xbmc.Player):
         if self.currenttvshowid != tvshowid:
             self.currenttvshowid = tvshowid
             self.playedinarow = 1
+
+        result = xbmc.executeJSONRPC(
+            '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"tvshowid": %d, '
+            '"properties": [ "title", "playcount", "season", "episode", "showtitle", "plot", '
+            '"file", "rating", "resume", "tvshowid", "art", "firstaired", "runtime", "writer", '
+            '"dateadded", "lastplayed" , "streamdetails"], "sort": {"method": "episode"}}, "id": 1}'
+            % tvshowid)
