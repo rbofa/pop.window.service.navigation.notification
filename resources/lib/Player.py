@@ -284,3 +284,9 @@ class Player(xbmc.Player):
             '"file", "rating", "resume", "tvshowid", "art", "firstaired", "runtime", "writer", '
             '"dateadded", "lastplayed" , "streamdetails"], "sort": {"method": "episode"}}, "id": 1}'
             % tvshowid)
+
+        if result:
+            result = unicode(result, 'utf-8', errors='ignore')
+            result = json.loads(result)
+            self.logMsg("Got details of next up episode %s" % str(result), 2)
+            xbmc.sleep(100)
