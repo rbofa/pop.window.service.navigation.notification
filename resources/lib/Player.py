@@ -290,3 +290,11 @@ class Player(xbmc.Player):
             result = json.loads(result)
             self.logMsg("Got details of next up episode %s" % str(result), 2)
             xbmc.sleep(100)
+
+            # Find the next unwatched and the newest added episodes
+            if "result" in result and "episodes" in result["result"]:
+                includeWatched = addonSettings.getSetting("includeWatched") == "true"
+                episode = self.findNextEpisode(result, currentFile, includeWatched)
+                current_episode = self.findCurrentEpisode(result,currentFile)
+                self.logMsg("episode details %s" % str(episode), 2)
+                episodeid = episode["episodeid"]
