@@ -298,3 +298,17 @@ class Player(xbmc.Player):
                 current_episode = self.findCurrentEpisode(result,currentFile)
                 self.logMsg("episode details %s" % str(episode), 2)
                 episodeid = episode["episodeid"]
+
+                if current_episode:
+                    # we have something to show
+                    postPlayPage = PostPlayInfo("script-nextup-notification-PostPlayInfo.xml",
+                                                addonSettings.getAddonInfo('path'), "default", "1080i")
+                    postPlayPage.setItem(episode)
+                    postPlayPage.setPreviousItem(current_episode)
+                    upnextitems = self.parse_tvshows_recommended(6)
+                    postPlayPage.setUpNextList(upnextitems)
+                    playedinarownumber = addonSettings.getSetting("playedInARow")
+                    playTime = xbmc.Player().getTime()
+                    totalTime =  xbmc.Player().getTotalTime()
+                    self.logMsg("played in a row settings %s" % str(playedinarownumber), 2)
+                    self.logMsg("played in a row %s" % str(self.playedinarow), 2)
