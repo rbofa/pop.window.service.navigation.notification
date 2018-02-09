@@ -312,3 +312,15 @@ class Player(xbmc.Player):
                     totalTime =  xbmc.Player().getTotalTime()
                     self.logMsg("played in a row settings %s" % str(playedinarownumber), 2)
                     self.logMsg("played in a row %s" % str(self.playedinarow), 2)
+                    if int(self.playedinarow) <= int(playedinarownumber):
+                        if (shortplayNotification == "false") and (shortplayLength >= totalTime) and (shortplayMode == "true"):
+                            self.logMsg("hiding notification for short videos")
+                        else:
+                            postPlayPage.setStillWatching(False)
+                    else:
+                        if (shortplayNotification == "false") and (shortplayLength >= totalTime) and (shortplayMode == "true"):
+                            self.logMsg("hiding notification for short videos")
+                        else:
+                            postPlayPage.setStillWatching(True)
+
+                    self.postplaywindow = postPlayPage
