@@ -324,3 +324,14 @@ class Player(xbmc.Player):
                             postPlayPage.setStillWatching(True)
 
                     self.postplaywindow = postPlayPage
+
+    def showPostPlay(self):
+        self.logMsg("showing postplay window")
+        p = self.postplaywindow.doModal()
+        autoplayed = xbmcgui.Window(10000).getProperty("NextUpNotification.AutoPlayed")
+        self.logMsg("showing postplay window completed autoplayed? "+str(autoplayed))
+        if autoplayed:
+            self.playedinarow += 1
+        else:
+            self.playedinarow = 1
+        del p
