@@ -335,3 +335,8 @@ class Player(xbmc.Player):
         else:
             self.playedinarow = 1
         del p
+
+    def parse_tvshows_recommended(self,limit):
+        items = []
+        prefix = "recommended-episodes"
+        json_query = LIBRARY._fetch_recommended_episodes()
