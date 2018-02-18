@@ -340,3 +340,8 @@ class Player(xbmc.Player):
         items = []
         prefix = "recommended-episodes"
         json_query = LIBRARY._fetch_recommended_episodes()
+
+        if json_query:
+            # First unplayed episode of recent played tvshows
+            self.logMsg("getting next up tvshows " + json_query, 2)
+            json_query = json.loads(json_query)
