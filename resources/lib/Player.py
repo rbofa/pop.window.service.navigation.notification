@@ -345,3 +345,5 @@ class Player(xbmc.Player):
             # First unplayed episode of recent played tvshows
             self.logMsg("getting next up tvshows " + json_query, 2)
             json_query = json.loads(json_query)
+            if "result" in json_query and 'tvshows' in json_query['result']:
+            count = -1
