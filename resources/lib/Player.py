@@ -347,3 +347,10 @@ class Player(xbmc.Player):
             json_query = json.loads(json_query)
             if "result" in json_query and 'tvshows' in json_query['result']:
             count = -1
+            for item in json_query['result']['tvshows']:
+        if xbmc.abortRequested:
+            break
+        if count == -1:
+            count += 1
+            continue
+        json_query2 = xbmcgui.Window(10000).getProperty(prefix + "-data-" + str(item['tvshowid']))
