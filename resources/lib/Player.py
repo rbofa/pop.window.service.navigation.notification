@@ -354,3 +354,12 @@ class Player(xbmc.Player):
             count += 1
             continue
         json_query2 = xbmcgui.Window(10000).getProperty(prefix + "-data-" + str(item['tvshowid']))
+        if json_query2:
+    self.logMsg("getting next up episodes " + json_query2, 2)
+    json_query2 = json.loads(json_query2)
+    if "result" in json_query2 and json_query2['result'] is not None and 'episodes' in json_query2['result']:
+        for item2 in json_query2['result']['episodes']:
+            episode = "%.2d" % float(item2['episode'])
+            season = "%.2d" % float(item2['season'])
+            episodeno = "s%se%s" % (season, episode)
+            break
