@@ -363,3 +363,13 @@ class Player(xbmc.Player):
             season = "%.2d" % float(item2['season'])
             episodeno = "s%se%s" % (season, episode)
             break
+            plot = item2['plot']
+            episodeid = str(item2['episodeid'])
+            if len(item['studio']) > 0:
+                studio = item['studio'][0]
+            else:
+                studio = ""
+            if "director" in item2:
+                director = " / ".join(item2['director'])
+            if "writer" in item2:
+                writer = " / ".join(item2['writer'])
