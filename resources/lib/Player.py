@@ -373,3 +373,19 @@ class Player(xbmc.Player):
                 director = " / ".join(item2['director'])
             if "writer" in item2:
                 writer = " / ".join(item2['writer'])
+                liz = xbmcgui.ListItem(item2['title'])
+                liz.setPath(item2['file'])
+                liz.setProperty('IsPlayable', 'true')
+                liz.setInfo(type="Video", infoLabels={"Title": item2['title'],
+                                                      "Episode": item2['episode'],
+                                                      "Season": item2['season'],
+                                                      "Studio": studio,
+                                                      "Premiered": item2['firstaired'],
+                                                      "Plot": plot,
+                                                      "TVshowTitle": item2['showtitle'],
+                                                      "Rating": str(float(item2['rating'])),
+                                                      "MPAA": item['mpaa'],
+                                                      "Playcount": item2['playcount'],
+                                                      "Director": director,
+                                                      "Writer": writer,
+                                                      "mediatype": "episode"})
