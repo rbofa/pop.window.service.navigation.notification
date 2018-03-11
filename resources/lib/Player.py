@@ -389,3 +389,15 @@ class Player(xbmc.Player):
                                                       "Director": director,
                                                       "Writer": writer,
                                                       "mediatype": "episode"})
+
+            liz.setProperty("episodeid",episodeid)
+            liz.setProperty("episodeno", episodeno)
+            liz.setProperty("resumetime", str(item2['resume']['position']))
+            liz.setProperty("totaltime", str(item2['resume']['total']))
+            liz.setProperty("type",'episode')
+            liz.setProperty("fanart_image", item2['art'].get('tvshow.fanart', ''))
+            liz.setProperty("dbid", str(item2['episodeid']))
+            liz.setArt(item2['art'])
+            liz.setThumbnailImage(item2['art'].get('thumb', ''))
+            liz.setIconImage('DefaultTVShows.png')
+            hasVideo = False
