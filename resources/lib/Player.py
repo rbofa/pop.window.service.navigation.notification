@@ -401,3 +401,8 @@ class Player(xbmc.Player):
             liz.setThumbnailImage(item2['art'].get('thumb', ''))
             liz.setIconImage('DefaultTVShows.png')
             hasVideo = False
+            for key, value in item2['streamdetails'].iteritems():
+                for stream in value:
+                    if 'video' in key:
+                        hasVideo = True
+                    liz.addStreamInfo(key, stream)
