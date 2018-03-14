@@ -406,3 +406,19 @@ class Player(xbmc.Player):
                     if 'video' in key:
                         hasVideo = True
                     liz.addStreamInfo(key, stream)
+
+                    # if duration wasnt in the streaminfo try adding the scraped one
+                    if not hasVideo:
+                        stream = {'duration': item2['runtime']}
+                        liz.addStreamInfo("video", stream)
+
+                    items.append(liz)
+
+                    count += 1
+                    if count == limit:
+                        break
+                if count == limit:
+                    break
+        del json_query
+    self.logMsg("getting next up episodes completed ", 2)
+    return items
