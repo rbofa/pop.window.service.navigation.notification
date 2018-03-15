@@ -422,3 +422,9 @@ class Player(xbmc.Player):
         del json_query
     self.logMsg("getting next up episodes completed ", 2)
     return items
+
+    def autoPlayPlayback(self):
+        currentFile = xbmc.Player().getPlayingFile()
+
+        # Get the active player
+        result = self.getNowPlaying()
