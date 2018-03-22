@@ -463,3 +463,6 @@ class Player(xbmc.Player):
 
         self.currentepisodeid = currentepisodeid
         self.logMsg("Getting details of next up episode for tvshow id: " + str(tvshowid), 1)
+        if self.currenttvshowid != tvshowid:
+            self.currenttvshowid = tvshowid
+            self.playedinarow = 1
