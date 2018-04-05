@@ -17,3 +17,5 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
         else:
             xbmcgui.WindowXMLDialog.__init__(self, *args, **kwargs)
 
+    def onInit(self):
+        self.action_exitkeys_id = [10, 13]
