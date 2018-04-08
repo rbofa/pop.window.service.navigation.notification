@@ -19,3 +19,13 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
 
     def onInit(self):
         self.action_exitkeys_id = [10, 13]
+
+        image = self.item['art'].get('tvshow.poster', '')
+        thumb = self.item['art'].get('thumb', '')
+        clearartimage = self.item['art'].get('tvshow.clearart', '')
+        landscapeimage = self.item['art'].get('tvshow.landscape', '')
+        fanartimage = self.item['art'].get('tvshow.fanart', '')
+        overview = self.item['plot']
+        tvshowtitle = self.item['showtitle']
+        name = self.item['title']
+        playcount = self.item['playcount']
