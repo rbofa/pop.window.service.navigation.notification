@@ -29,3 +29,7 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
         tvshowtitle = self.item['showtitle']
         name = self.item['title']
         playcount = self.item['playcount']
+
+        season = self.item['season']
+        episodeNum = self.item['episode']
+        episodeInfo = str(season) + 'x' + str(episodeNum) + '.'
