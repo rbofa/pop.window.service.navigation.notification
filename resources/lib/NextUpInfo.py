@@ -37,4 +37,3 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
         rating = str(round(float(self.item['rating']),1))
         year = self.item['firstaired']
         info = year
-
