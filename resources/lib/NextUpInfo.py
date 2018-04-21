@@ -48,3 +48,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
             self.getControl(3003).setLabel(rating)
         else:
             self.getControl(3003).setVisible(False)
+
+        try:
+            tvShowControl = self.getControl(3007)
+            if tvShowControl != None:
+                tvShowControl.setLabel(tvshowtitle)
+        except:
+            pass
