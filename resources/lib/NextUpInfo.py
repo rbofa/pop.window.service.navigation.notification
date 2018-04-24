@@ -55,3 +55,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 tvShowControl.setLabel(tvshowtitle)
         except:
             pass
+
+        try:
+            posterControl = self.getControl(3009)
+            if posterControl != None:
+                posterControl.setImage(image)
+        except:
+            pass
