@@ -62,3 +62,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 posterControl.setImage(image)
         except:
             pass
+
+        try:
+            fanartControl = self.getControl(3005)
+            if fanartControl != None:
+                fanartControl.setImage(fanartimage)
+        except:
+            pass
