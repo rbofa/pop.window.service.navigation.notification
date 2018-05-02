@@ -69,3 +69,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 fanartControl.setImage(fanartimage)
         except:
             pass
+
+        try:
+            thumbControl = self.getControl(3008)
+            if thumbControl != None:
+                self.getControl(3008).setImage(thumb)
+        except:
+            pass
