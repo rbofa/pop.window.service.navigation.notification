@@ -76,3 +76,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 self.getControl(3008).setImage(thumb)
         except:
             pass
+
+        try:
+            landscapeControl = self.getControl(3010)
+            if landscapeControl != None:
+                self.getControl(3010).setImage(landscapeimage)
+        except:
+            pass
