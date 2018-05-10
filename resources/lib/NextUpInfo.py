@@ -83,3 +83,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 self.getControl(3010).setImage(landscapeimage)
         except:
             pass
+
+        try:
+            clearartimageControl = self.getControl(3006)
+            if clearartimageControl != None:
+                self.getControl(3006).setImage(clearartimage)
+        except:
+            pass
