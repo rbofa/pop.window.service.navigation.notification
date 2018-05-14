@@ -90,3 +90,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 self.getControl(3006).setImage(clearartimage)
         except:
             pass
+
+        try:
+            seasonControl = self.getControl(3015)
+            if seasonControl != None:
+                seasonControl.setLabel(str(season))
+        except:
+            pass
