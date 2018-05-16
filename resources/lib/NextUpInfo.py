@@ -97,3 +97,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 seasonControl.setLabel(str(season))
         except:
             pass
+
+        try:
+            episodeControl = self.getControl(3016)
+            if episodeControl != None:
+                episodeControl.setLabel(str(episodeNum))
+        except:
+            pass
