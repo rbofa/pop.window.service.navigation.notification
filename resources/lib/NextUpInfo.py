@@ -104,3 +104,12 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 episodeControl.setLabel(str(episodeNum))
         except:
             pass
+
+        try:
+            resolutionControl = self.getControl(3011)
+            if resolutionControl != None:
+                resolution1 = self.item['streamdetails'].get('video')
+                resolution = resolution1[0].get('height')
+                resolutionControl.setLabel(str(resolution))
+        except:
+            pass
