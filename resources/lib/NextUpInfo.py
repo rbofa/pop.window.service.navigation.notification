@@ -113,3 +113,10 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 resolutionControl.setLabel(str(resolution))
         except:
             pass
+
+        try:
+            playcountControl = self.getControl(3018)
+            if playcountControl != None:
+                playcountControl.setLabel(str(playcount))
+        except:
+            pass
