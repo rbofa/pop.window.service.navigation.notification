@@ -120,3 +120,6 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
                 playcountControl.setLabel(str(playcount))
         except:
             pass
+
+    def setItem(self, item):
+        self.item = item
