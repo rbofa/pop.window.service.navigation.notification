@@ -123,3 +123,6 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
 
     def setItem(self, item):
         self.item = item
+
+    def setCancel(self, cancel):
+        self.cancel = cancel
