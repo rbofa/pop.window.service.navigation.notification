@@ -129,3 +129,6 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
 
     def isCancel(self):
         return self.cancel
+
+    def setWatchNow(self, watchnow):
+        self.watchnow = watchnow
