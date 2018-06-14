@@ -135,3 +135,6 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
 
     def isWatchNow(self):
         return self.watchnow
+
+    def onFocus(self, controlId):
+        pass
