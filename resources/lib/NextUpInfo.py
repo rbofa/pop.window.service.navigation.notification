@@ -138,3 +138,9 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
 
     def onFocus(self, controlId):
         pass
+
+    def doAction(self):
+        pass
+
+    def closeDialog(self):
+        self.close()
