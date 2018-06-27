@@ -144,3 +144,20 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
 
     def closeDialog(self):
         self.close()
+
+    def onClick(self, controlID):
+
+        xbmc.log('nextup info onclick: ' + str(controlID))
+
+        if controlID == 3012:
+
+            # watch now
+            self.setWatchNow(True)
+            self.close()
+        elif controlID == 3013:
+
+            # cancel
+            self.setCancel(True)
+            self.close()
+
+        pass
