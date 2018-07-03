@@ -161,3 +161,9 @@ class NextUpInfo(xbmcgui.WindowXMLDialog):
             self.close()
 
         pass
+
+    def onAction(self, action):
+
+        xbmc.log('nextup info action: ' + str(action.getId()))
+        if action == ACTION_PLAYER_STOP:
+            self.close()
