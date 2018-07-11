@@ -15,3 +15,8 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     PREV_BUTTON_ID = 101
     NEXT_BUTTON_ID = 102
+
+    HOME_BUTTON_ID = 201
+    SPOILERS_BUTTON_ID = 202
+
+    NEXTUP_LIST_ID = 400
