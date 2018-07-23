@@ -20,3 +20,12 @@ class PostPlayInfo(xbmcgui.WindowXML):
     SPOILERS_BUTTON_ID = 202
 
     NEXTUP_LIST_ID = 400
+
+    def __init__(self, *args, **kwargs):
+        xbmc.log("PostPlayInfo ->  init called",level=xbmc.LOGNOTICE)
+        if OS_MACHINE[0:5] == 'armv7':
+            xbmcgui.WindowXML.__init__(self)
+        else:
+            xbmcgui.WindowXML.__init__(self, *args, **kwargs)
+
+        xbmc.log("PostPlayInfo ->  init called 2",level=xbmc.LOGNOTICE)
