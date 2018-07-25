@@ -29,3 +29,12 @@ class PostPlayInfo(xbmcgui.WindowXML):
             xbmcgui.WindowXML.__init__(self, *args, **kwargs)
 
         xbmc.log("PostPlayInfo ->  init called 2",level=xbmc.LOGNOTICE)
+
+        self._winID = None
+        self.action_exitkeys_id = [10, 13]
+        self.item = None
+        self.previousitem = None
+        self.upnextlist = []
+        self.cancel = False
+        self.autoplayed = False
+        self.playAutomatically = True
