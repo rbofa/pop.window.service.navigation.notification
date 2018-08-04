@@ -38,3 +38,10 @@ class PostPlayInfo(xbmcgui.WindowXML):
         self.cancel = False
         self.autoplayed = False
         self.playAutomatically = True
+
+        self.previous = None
+        self.timeout = None
+        self.showStillWatching = False
+        self.addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
+
+        xbmc.log("PostPlayInfo ->  init completed",level=xbmc.LOGNOTICE)
