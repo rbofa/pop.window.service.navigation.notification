@@ -45,3 +45,12 @@ class PostPlayInfo(xbmcgui.WindowXML):
         self.addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
 
         xbmc.log("PostPlayInfo ->  init completed",level=xbmc.LOGNOTICE)
+
+    def onInit(self):
+        xbmc.log("PostPlayInfo ->  onInit called",level=xbmc.LOGNOTICE)
+        self.upNextControl = self.getControl(self.NEXTUP_LIST_ID)
+        self.spoilersControl = self.getControl(self.SPOILERS_BUTTON_ID)
+        self._winID = xbmcgui.getCurrentWindowId()
+        playMode = self.addonSettings.getSetting("autoPlayMode")
+        if playMode == "1":
+            self.playAutomatically = False
