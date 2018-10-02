@@ -54,3 +54,10 @@ class PostPlayInfo(xbmcgui.WindowXML):
         playMode = self.addonSettings.getSetting("autoPlayMode")
         if playMode == "1":
             self.playAutomatically = False
+
+        self.setInfo()
+        self.setPreviousInfo()
+        self.fillUpNext()
+        self.prepareSpoilerButton()
+        self.prepareStillWatching()
+        self.startTimer()
