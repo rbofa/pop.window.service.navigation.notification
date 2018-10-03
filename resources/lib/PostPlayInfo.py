@@ -61,3 +61,12 @@ class PostPlayInfo(xbmcgui.WindowXML):
         self.prepareSpoilerButton()
         self.prepareStillWatching()
         self.startTimer()
+
+        if self.item is not None:
+            self.setFocusId(self.NEXT_BUTTON_ID)
+        else:
+            self.setFocusId(self.PREV_BUTTON_ID)
+
+        xbmcgui.Window(10000).clearProperty("NextUpNotification.AutoPlayed")
+
+        xbmc.log("PostPlayInfo ->  onInit completed",level=xbmc.LOGNOTICE)
