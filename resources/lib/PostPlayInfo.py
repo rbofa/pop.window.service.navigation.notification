@@ -70,3 +70,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
         xbmcgui.Window(10000).clearProperty("NextUpNotification.AutoPlayed")
 
         xbmc.log("PostPlayInfo ->  onInit completed",level=xbmc.LOGNOTICE)
+
+    def prepareSpoilerButton(self):
+        showpostplayplot = self.addonSettings.getSetting("showPostPlayPlot") == "true"
+        self.spoilersControl.setSelected(showpostplayplot)
