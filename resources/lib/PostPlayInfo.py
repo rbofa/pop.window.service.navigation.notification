@@ -74,3 +74,9 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def prepareSpoilerButton(self):
         showpostplayplot = self.addonSettings.getSetting("showPostPlayPlot") == "true"
         self.spoilersControl.setSelected(showpostplayplot)
+        if showpostplayplot:
+            self.setProperty('showplot','1')
+            xbmc.log("PostPlayInfo ->  showpostplayplot true",level=xbmc.LOGNOTICE)
+        else:
+            self.setProperty('showplot','')
+            xbmc.log("PostPlayInfo ->  showpostplayplot false",level=xbmc.LOGNOTICE)
