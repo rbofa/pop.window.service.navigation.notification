@@ -80,3 +80,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
         else:
             self.setProperty('showplot','')
             xbmc.log("PostPlayInfo ->  showpostplayplot false",level=xbmc.LOGNOTICE)
+
+    def setUpNextList(self, list):
+        self.upnextlist = list
