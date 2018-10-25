@@ -83,3 +83,9 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def setUpNextList(self, list):
         self.upnextlist = list
+
+    def prepareStillWatching(self):
+        if self.showStillWatching:
+            self.setProperty('stillwatching','1')
+        else:
+            self.setProperty('stillwatching','')
