@@ -89,3 +89,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
             self.setProperty('stillwatching','1')
         else:
             self.setProperty('stillwatching','')
+
+    def fillUpNext(self):
+        self.upNextControl.reset()
+        self.upNextControl.addItems(self.upnextlist)
