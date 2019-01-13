@@ -93,3 +93,37 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def fillUpNext(self):
         self.upNextControl.reset()
         self.upNextControl.addItems(self.upnextlist)
+
+    def setInfo(self):
+        if self.item is not None:
+            self.setProperty(
+                'background',self.item['art'].get('tvshow.fanart', ''))
+            self.setProperty(
+                'banner',self.item['art'].get('tvshow.banner', ''))
+            self.setProperty(
+                'characterart',self.item['art'].get('tvshow.characterart', ''))
+            self.setProperty(
+                'next.poster',self.item['art'].get('tvshow.poster', ''))
+            self.setProperty(
+                'next.thumb',self.item['art'].get('thumb', ''))
+            self.setProperty(
+                'next.clearart',self.item['art'].get('tvshow.clearart', ''))
+            self.setProperty(
+                'next.landscape',self.item['art'].get('tvshow.landscape', ''))
+            self.setProperty(
+                'next.plot',self.item['plot'])
+            self.setProperty(
+                'next.tvshowtitle',self.item['showtitle'])
+            self.setProperty(
+                'next.title',self.item['title'])
+            self.setProperty(
+                'next.season',str(self.item['season']))
+            self.setProperty(
+                'next.episode',str(self.item['episode']))
+            self.setProperty(
+                'next.year',str(self.item['firstaired']))
+            self.setProperty(
+                'next.rating',str(round(float(self.item['rating']),1)))
+            self.setProperty(
+                'next.duration',str(self.item['runtime'] / 60))
+
