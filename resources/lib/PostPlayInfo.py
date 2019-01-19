@@ -127,3 +127,31 @@ class PostPlayInfo(xbmcgui.WindowXML):
             self.setProperty(
                 'next.duration',str(self.item['runtime'] / 60))
 
+    def setPreviousInfo(self):
+
+        self.setProperty(
+            'clearlogo',self.previousitem['art'].get('tvshow.clearlogo', ''))
+        self.setProperty(
+            'previous.poster',self.previousitem['art'].get('tvshow.poster', ''))
+        self.setProperty(
+            'previous.thumb',self.previousitem['art'].get('thumb', ''))
+        self.setProperty(
+            'previous.clearart',self.previousitem['art'].get('tvshow.clearart', ''))
+        self.setProperty(
+            'previous.landscape',self.previousitem['art'].get('tvshow.landscape', ''))
+        self.setProperty(
+            'previous.plot',self.previousitem['plot'])
+        self.setProperty(
+            'previous.tvshowtitle',self.previousitem['showtitle'])
+        self.setProperty(
+            'previous.title',self.previousitem['title'])
+        self.setProperty(
+            'previous.season',str(self.previousitem['season']))
+        self.setProperty(
+            'previous.episode',str(self.previousitem['episode']))
+        self.setProperty(
+            'previous.year',str(self.previousitem['firstaired']))
+        self.setProperty(
+            'previous.rating',str(round(float(self.previousitem['rating']),1)))
+        self.setProperty(
+            'previous.duration',str(self.previousitem['runtime'] / 60))
