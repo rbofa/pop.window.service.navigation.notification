@@ -155,3 +155,8 @@ class PostPlayInfo(xbmcgui.WindowXML):
             'previous.rating',str(round(float(self.previousitem['rating']),1)))
         self.setProperty(
             'previous.duration',str(self.previousitem['runtime'] / 60))
+
+    def setProperty(self, key, value):
+
+        if not self._winID:
+            self._winID = xbmcgui.getCurrentWindowId()
