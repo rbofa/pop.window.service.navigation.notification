@@ -160,3 +160,9 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
         if not self._winID:
             self._winID = xbmcgui.getCurrentWindowId()
+
+        try:
+        xbmcgui.Window(self._winID).setProperty(key, value)
+        xbmcgui.WindowXML.setProperty(self, key, value)
+        except:
+            pass
