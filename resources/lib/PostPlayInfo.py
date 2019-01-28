@@ -166,3 +166,8 @@ class PostPlayInfo(xbmcgui.WindowXML):
         xbmcgui.WindowXML.setProperty(self, key, value)
         except:
             pass
+
+    def setItem(self, item):
+        self.item = item
+    if item is not None:
+        self.setProperty('has.next', '1')
