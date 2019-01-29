@@ -171,3 +171,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
         self.item = item
     if item is not None:
         self.setProperty('has.next', '1')
+
+    def setPreviousItem(self, item):
+        self.previousitem = item
