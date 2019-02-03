@@ -175,5 +175,8 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def setPreviousItem(self, item):
         self.previousitem = item
 
-        def setCancel(self, cancel):
-            self.cancel = cancel
+    def setCancel(self, cancel):
+        self.cancel = cancel
+
+    def isCancel(self):
+        return self.cancel
