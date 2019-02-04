@@ -180,3 +180,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def isCancel(self):
         return self.cancel
+
+    def setStillWatching(self, stillwatching):
+        self.showStillWatching = stillwatching
