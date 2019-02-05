@@ -183,3 +183,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def setStillWatching(self, stillwatching):
         self.showStillWatching = stillwatching
+
+    def isAutoPlayed(self):
+        return self.autoplayed
