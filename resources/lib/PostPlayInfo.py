@@ -186,3 +186,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def isAutoPlayed(self):
         return self.autoplayed
+
+    def setAutoPlayed(self, autoplayed):
+        self.autoplayed = autoplayed
