@@ -189,3 +189,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def setAutoPlayed(self, autoplayed):
         self.autoplayed = autoplayed
+
+    def onFocus(self, controlId):
+        pass
