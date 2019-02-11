@@ -192,3 +192,5 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def onFocus(self, controlId):
         pass
+    def doAction(self):
+        pass
