@@ -194,3 +194,5 @@ class PostPlayInfo(xbmcgui.WindowXML):
         pass
     def doAction(self):
         pass
+    def closeDialog(self):
+        self.close()
