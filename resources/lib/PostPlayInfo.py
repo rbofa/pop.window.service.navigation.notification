@@ -196,3 +196,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
         pass
     def closeDialog(self):
         self.close()
+
+    def onClick(self, controlID):
+        self.cancelTimer()
