@@ -199,3 +199,9 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def onClick(self, controlID):
         self.cancelTimer()
+
+        if controlID == self.PREV_BUTTON_ID:
+
+        # previous
+        self.playVideo(str(self.previousitem['episodeid']))
+        self.close()
