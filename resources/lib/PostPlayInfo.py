@@ -202,6 +202,12 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
         if controlID == self.PREV_BUTTON_ID:
 
-        # previous
-        self.playVideo(str(self.previousitem['episodeid']))
-        self.close()
+            # previous
+            self.playVideo(str(self.previousitem['episodeid']))
+            self.close()
+
+        elif controlID == self.NEXT_BUTTON_ID:
+
+            # next
+            self.playVideo(str(self.item["episodeid"]))
+            self.close()
