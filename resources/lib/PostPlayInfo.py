@@ -211,3 +211,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
             # next
             self.playVideo(str(self.item["episodeid"]))
             self.close()
+
+        elif controlID == self.NEXTUP_LIST_ID:
+            episodeid = self.upNextControl.getSelectedItem().getProperty("episodeid")
