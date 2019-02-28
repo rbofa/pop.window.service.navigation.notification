@@ -217,3 +217,5 @@ class PostPlayInfo(xbmcgui.WindowXML):
             xbmc.log("PostPlayInfo ->  onclick action on next up list item id is  "+episodeid,level=xbmc.LOGNOTICE)
             self.playVideo(episodeid)
             self.close()
+        elif controlID == self.HOME_BUTTON_ID:
+            self.close()
