@@ -219,3 +219,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
             self.close()
         elif controlID == self.HOME_BUTTON_ID:
             self.close()
+        elif controlID == self.SPOILERS_BUTTON_ID:
+            if self.spoilersControl.isSelected() == 1:
+                selected = "true"
