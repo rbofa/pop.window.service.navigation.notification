@@ -222,3 +222,5 @@ class PostPlayInfo(xbmcgui.WindowXML):
         elif controlID == self.SPOILERS_BUTTON_ID:
             if self.spoilersControl.isSelected() == 1:
                 selected = "true"
+            else:
+                selected = "false"
