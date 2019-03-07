@@ -226,3 +226,5 @@ class PostPlayInfo(xbmcgui.WindowXML):
                 selected = "false"
             xbmc.log("PostPlayInfo ->  onclick action spoilers button selected? "+selected,level=xbmc.LOGNOTICE)
             self.addonSettings.setSetting("showPostPlayPlot",selected)
+            if selected == "true":
+                self.setProperty('showplot','1')
