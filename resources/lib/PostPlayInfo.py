@@ -228,3 +228,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
             self.addonSettings.setSetting("showPostPlayPlot",selected)
             if selected == "true":
                 self.setProperty('showplot','1')
+            else:
+                self.setProperty('showplot','')
+
+        pass
