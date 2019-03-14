@@ -232,3 +232,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
                 self.setProperty('showplot','')
 
         pass
+
+    def playVideo(self, episodeid):
+
+        xbmc.log("PostPlayInfo ->  play video called episode id is " +episodeid,level=xbmc.LOGNOTICE)
