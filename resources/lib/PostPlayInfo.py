@@ -236,3 +236,8 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def playVideo(self, episodeid):
 
         xbmc.log("PostPlayInfo ->  play video called episode id is " +episodeid,level=xbmc.LOGNOTICE)
+
+        # Play media
+        xbmc.executeJSONRPC(
+            '{ "jsonrpc": "2.0", "id": 0, "method": "Player.Open", '
+            '"params": { "item": {"episodeid": ' + episodeid + '} } }')
