@@ -241,3 +241,10 @@ class PostPlayInfo(xbmcgui.WindowXML):
         xbmc.executeJSONRPC(
             '{ "jsonrpc": "2.0", "id": 0, "method": "Player.Open", '
             '"params": { "item": {"episodeid": ' + episodeid + '} } }')
+
+    def onAction(self, action):
+
+        self.cancelTimer()
+        if action in (xbmcgui.ACTION_PREVIOUS_MENU, xbmcgui.ACTION_NAV_BACK):
+            xbmc.log("PostPlayInfo ->  closing ",level=xbmc.LOGNOTICE)
+            self.close()
