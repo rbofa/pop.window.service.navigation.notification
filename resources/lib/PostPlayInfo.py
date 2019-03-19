@@ -248,3 +248,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
         if action in (xbmcgui.ACTION_PREVIOUS_MENU, xbmcgui.ACTION_NAV_BACK):
             xbmc.log("PostPlayInfo ->  closing ",level=xbmc.LOGNOTICE)
             self.close()
+
+    def startTimer(self):
+        self.timeout = time.time() + 16
+        threading.Thread(target=self.countdown).start()
