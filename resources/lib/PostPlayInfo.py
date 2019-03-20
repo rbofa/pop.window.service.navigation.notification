@@ -252,3 +252,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def startTimer(self):
         self.timeout = time.time() + 16
         threading.Thread(target=self.countdown).start()
+
+    def cancelTimer(self):
+        self.timeout = None
+        self.setProperty('countdown', '')
