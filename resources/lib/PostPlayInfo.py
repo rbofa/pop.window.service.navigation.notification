@@ -256,3 +256,11 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def cancelTimer(self):
         self.timeout = None
         self.setProperty('countdown', '')
+
+    def countdown(self):
+        xbmc.log("PostPlayInfo ->  countdown started timeout",level=xbmc.LOGNOTICE)
+        while self.timeout and not xbmc.Monitor().waitForAbort(0.1):
+        now = time.time()
+        if self.timeout and now > self.timeout:
+            self.timeout = None
+            self.setProperty('countdown', '')
