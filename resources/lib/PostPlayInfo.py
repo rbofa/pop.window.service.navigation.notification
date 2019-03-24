@@ -264,3 +264,9 @@ class PostPlayInfo(xbmcgui.WindowXML):
         if self.timeout and now > self.timeout:
             self.timeout = None
             self.setProperty('countdown', '')
+            if not self.showStillWatching and self.playAutomatically:
+                xbmc.executebuiltin('SendClick(,{0})'.format(self.NEXT_BUTTON_ID))
+                xbmc.log("PostPlayInfo ->  played next",level=xbmc.LOGNOTICE)
+                self.setAutoPlayed(True)
+                xbmcgui.Window(10000).setProperty("NextUpNotification.AutoPlayed","1")
+                break
