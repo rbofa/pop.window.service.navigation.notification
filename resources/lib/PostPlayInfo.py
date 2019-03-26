@@ -13,6 +13,7 @@ PASSOUT_LAST_VIDEO_DURATION_MILLIS = 1200000
 
 class PostPlayInfo(xbmcgui.WindowXML):
 
+
     PREV_BUTTON_ID = 101
     NEXT_BUTTON_ID = 102
 
@@ -45,6 +46,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
         self.addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
 
         xbmc.log("PostPlayInfo ->  init completed",level=xbmc.LOGNOTICE)
+
 
     def onInit(self):
         xbmc.log("PostPlayInfo ->  onInit called",level=xbmc.LOGNOTICE)
@@ -127,6 +129,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
             self.setProperty(
                 'next.duration',str(self.item['runtime'] / 60))
 
+
     def setPreviousInfo(self):
 
         self.setProperty(
@@ -156,21 +159,22 @@ class PostPlayInfo(xbmcgui.WindowXML):
         self.setProperty(
             'previous.duration',str(self.previousitem['runtime'] / 60))
 
+
     def setProperty(self, key, value):
 
         if not self._winID:
             self._winID = xbmcgui.getCurrentWindowId()
 
         try:
-        xbmcgui.Window(self._winID).setProperty(key, value)
-        xbmcgui.WindowXML.setProperty(self, key, value)
+            xbmcgui.Window(self._winID).setProperty(key, value)
+            xbmcgui.WindowXML.setProperty(self, key, value)
         except:
             pass
 
     def setItem(self, item):
         self.item = item
-    if item is not None:
-        self.setProperty('has.next', '1')
+        if item is not None:
+            self.setProperty('has.next', '1')
 
     def setPreviousItem(self, item):
         self.previousitem = item
@@ -192,8 +196,10 @@ class PostPlayInfo(xbmcgui.WindowXML):
 
     def onFocus(self, controlId):
         pass
+
     def doAction(self):
         pass
+
     def closeDialog(self):
         self.close()
 
@@ -205,7 +211,6 @@ class PostPlayInfo(xbmcgui.WindowXML):
             # previous
             self.playVideo(str(self.previousitem['episodeid']))
             self.close()
-
         elif controlID == self.NEXT_BUTTON_ID:
 
             # next
@@ -219,6 +224,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
             self.close()
         elif controlID == self.HOME_BUTTON_ID:
             self.close()
+
         elif controlID == self.SPOILERS_BUTTON_ID:
             if self.spoilersControl.isSelected() == 1:
                 selected = "true"
@@ -249,6 +255,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
             xbmc.log("PostPlayInfo ->  closing ",level=xbmc.LOGNOTICE)
             self.close()
 
+
     def startTimer(self):
         self.timeout = time.time() + 16
         threading.Thread(target=self.countdown).start()
@@ -260,15 +267,15 @@ class PostPlayInfo(xbmcgui.WindowXML):
     def countdown(self):
         xbmc.log("PostPlayInfo ->  countdown started timeout",level=xbmc.LOGNOTICE)
         while self.timeout and not xbmc.Monitor().waitForAbort(0.1):
-        now = time.time()
-        if self.timeout and now > self.timeout:
-            self.timeout = None
-            self.setProperty('countdown', '')
-            if not self.showStillWatching and self.playAutomatically:
-                xbmc.executebuiltin('SendClick(,{0})'.format(self.NEXT_BUTTON_ID))
-                xbmc.log("PostPlayInfo ->  played next",level=xbmc.LOGNOTICE)
-                self.setAutoPlayed(True)
-                xbmcgui.Window(10000).setProperty("NextUpNotification.AutoPlayed","1")
+            now = time.time()
+            if self.timeout and now > self.timeout:
+                self.timeout = None
+                self.setProperty('countdown', '')
+                if not self.showStillWatching and self.playAutomatically:
+                    xbmc.executebuiltin('SendClick(,{0})'.format(self.NEXT_BUTTON_ID))
+                    xbmc.log("PostPlayInfo ->  played next",level=xbmc.LOGNOTICE)
+                    self.setAutoPlayed(True)
+                    xbmcgui.Window(10000).setProperty("NextUpNotification.AutoPlayed","1")
                 break
             elif self.timeout is not None:
                 self.setProperty('countdown', str(min(15, int((self.timeout or now) - now))))
