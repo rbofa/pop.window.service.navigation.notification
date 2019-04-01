@@ -33,7 +33,7 @@ class Service():
     def ServiceEntryPoint(self):
         player = Player()
         monitor = xbmc.Monitor()
-        
+
         lastFile = None
         lastUnwatchedFile = None
 
@@ -61,7 +61,7 @@ class Service():
                     if xbmcgui.Window(10000).getProperty("PseudoTVRunning") != "True" and not nextUpDisabled:
 
                         if (not showpostplay or (showpostplaypreview and showpostplay)) and (totalTime - playTime <= int(notificationtime) and (
-                                        lastFile is None or lastFile != currentFile)) and totalTime != 0:
+                                lastFile is None or lastFile != currentFile)) and totalTime != 0:
                             lastFile = currentFile
                             self.logMsg("Calling autoplayback totaltime - playtime is %s" % (totalTime - playTime), 2)
                             player.autoPlayPlayback()
@@ -72,7 +72,7 @@ class Service():
                             player.postPlayPlayback()
 
                         if displayrandomunwatched and (int(playTime) >= int(randomunwatchedtime)) and (int(playTime) < int(int(randomunwatchedtime)+100)) and (
-                                        lastUnwatchedFile is None or lastUnwatchedFile != currentFile):
+                                lastUnwatchedFile is None or lastUnwatchedFile != currentFile):
                             self.logMsg("randomunwatchedtime is %s" % (int(randomunwatchedtime)), 2)
                             self.logMsg("Calling display unwatched", 2)
                             lastUnwatchedFile = currentFile
