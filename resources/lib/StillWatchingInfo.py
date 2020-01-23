@@ -14,3 +14,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             xbmcgui.WindowXMLDialog.__init__(self)
         else:
             xbmcgui.WindowXMLDialog.__init__(self, *args, **kwargs)
+
+    def onInit(self):
+        image = self.item['art'].get('tvshow.poster', '')
