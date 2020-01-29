@@ -21,3 +21,4 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         landscape = self.item['art'].get('tvshow.landscape', '')
         fanartimage = self.item['art'].get('tvshow.fanart', '')
         clearartimage = self.item['art'].get('tvshow.clearart', '')
+        name = self.item['label']
