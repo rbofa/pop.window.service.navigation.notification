@@ -23,3 +23,4 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         clearartimage = self.item['art'].get('tvshow.clearart', '')
         name = self.item['label']
         rating = str(round(float(self.item['rating']), 1))
+        year = self.item['firstaired']
