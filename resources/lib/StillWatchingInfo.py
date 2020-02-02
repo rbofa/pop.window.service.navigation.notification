@@ -24,3 +24,4 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         name = self.item['label']
         rating = str(round(float(self.item['rating']), 1))
         year = self.item['firstaired']
+        overview = self.item['plot']
