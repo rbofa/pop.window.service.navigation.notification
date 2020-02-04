@@ -26,3 +26,4 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         year = self.item['firstaired']
         overview = self.item['plot']
         season = self.item['season']
+        episodeNum = self.item['episode']
