@@ -28,3 +28,4 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         season = self.item['season']
         episodeNum = self.item['episode']
         title = self.item['title']
+        playcount = self.item['playcount']
