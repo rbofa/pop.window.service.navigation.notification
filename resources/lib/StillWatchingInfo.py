@@ -29,3 +29,5 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         episodeNum = self.item['episode']
         title = self.item['title']
         playcount = self.item['playcount']
+        # set the dialog data
+        self.getControl(4000).setLabel(name)
