@@ -32,3 +32,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         # set the dialog data
         self.getControl(4000).setLabel(name)
         self.getControl(4006).setText(overview)
+
+        try:
+            posterControl = self.getControl(4001)
