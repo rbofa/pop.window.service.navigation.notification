@@ -37,3 +37,5 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             posterControl = self.getControl(4001)
             if posterControl is not None:
                 self.getControl(4001).setImage(image)
+        except:
+            pass
