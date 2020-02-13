@@ -39,3 +39,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
                 self.getControl(4001).setImage(image)
         except:
             pass
+
+        try:
+            thumbControl = self.getControl(4002)
