@@ -44,3 +44,5 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             thumbControl = self.getControl(4002)
             if thumbControl is not None:
                 self.getControl(4002).setImage(thumb)
+        except:
+            pass
