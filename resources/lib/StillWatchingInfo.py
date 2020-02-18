@@ -46,3 +46,4 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
                 self.getControl(4002).setImage(thumb)
         except:
             pass
+        self.getControl(4003).setLabel(rating)
