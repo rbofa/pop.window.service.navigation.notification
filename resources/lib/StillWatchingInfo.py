@@ -48,3 +48,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             pass
         self.getControl(4003).setLabel(rating)
         self.getControl(4004).setLabel(year)
+
+        try:
+            landscapeControl = self.getControl(4005)
