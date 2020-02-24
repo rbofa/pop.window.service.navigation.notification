@@ -51,3 +51,7 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
 
         try:
             landscapeControl = self.getControl(4005)
+        if landscapeControl is not None:
+            self.getControl(4005).setImage(landscape)
+        except:
+              pass
