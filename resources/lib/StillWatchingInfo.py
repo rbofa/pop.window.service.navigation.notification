@@ -55,3 +55,7 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             self.getControl(4005).setImage(landscape)
         except:
               pass
+
+
+        try:
+            fanartControl = self.getControl(4007)
