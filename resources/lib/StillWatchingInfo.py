@@ -60,3 +60,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             fanartControl = self.getControl(4007)
             if fanartControl is not None:
                 fanartControl.setImage(fanartimage)
+
+        except:
+        pass
