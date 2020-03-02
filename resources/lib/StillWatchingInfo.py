@@ -60,6 +60,14 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
             fanartControl = self.getControl(4007)
             if fanartControl is not None:
                 fanartControl.setImage(fanartimage)
-
         except:
         pass
+
+        try:
+            seasonControl = self.getControl(4008)
+            if seasonControl is not None:
+                seasonControl.setLabel(str(season))
+        except:
+            pass
+
+
