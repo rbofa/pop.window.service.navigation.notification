@@ -70,4 +70,10 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         except:
             pass
 
+        try:
+            episodeControl = self.getControl(4009)
+            if episodeControl is not None:
+                episodeControl.setLabel(str(episodeNum))
+        except:
+            pass
 
