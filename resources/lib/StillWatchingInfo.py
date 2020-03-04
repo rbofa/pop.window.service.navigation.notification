@@ -77,3 +77,9 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         except:
             pass
 
+        try:
+            titleControl = self.getControl(4010)
+            if titleControl is not None:
+                titleControl.setLabel(title)
+        except:
+            pass
