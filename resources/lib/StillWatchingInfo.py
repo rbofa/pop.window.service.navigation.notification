@@ -83,3 +83,13 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
                 titleControl.setLabel(title)
         except:
             pass
+
+
+        try:
+            resolutionControl = self.getControl(4011)
+            if resolutionControl is not None:
+                resolution1 = self.item['streamdetails'].get('video')
+                resolution = resolution1[0].get('height')
+                resolutionControl.setLabel(str(resolution))
+        except:
+            pass
