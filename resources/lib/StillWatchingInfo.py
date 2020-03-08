@@ -93,3 +93,11 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
                 resolutionControl.setLabel(str(resolution))
         except:
             pass
+
+
+        try:
+            clearartControl = self.getControl(4014)
+            if clearartControl is not None:
+                clearartControl.setImage(clearartimage)
+        except:
+            pass
