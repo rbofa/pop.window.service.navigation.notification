@@ -101,3 +101,11 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
                 clearartControl.setImage(clearartimage)
         except:
             pass
+
+
+        try:
+            playcountControl = self.getControl(4018)
+            if playcountControl != None:
+                playcountControl.setLabel(str(playcount))
+        except:
+            pass
