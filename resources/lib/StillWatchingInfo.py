@@ -84,7 +84,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         except:
             pass
 
-
         try:
             resolutionControl = self.getControl(4011)
             if resolutionControl is not None:
@@ -94,14 +93,12 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         except:
             pass
 
-
         try:
             clearartControl = self.getControl(4014)
             if clearartControl is not None:
                 clearartControl.setImage(clearartimage)
         except:
             pass
-
 
         try:
             playcountControl = self.getControl(4018)
@@ -110,6 +107,8 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         except:
             pass
 
-
         def setItem(self, item):
             self.item = item
+
+        def setCancel(self, cancel):
+            self.cancel = cancel
