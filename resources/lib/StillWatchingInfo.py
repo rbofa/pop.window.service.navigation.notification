@@ -112,3 +112,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
 
         def setCancel(self, cancel):
             self.cancel = cancel
+
+        def isCancel(self):
+            return self.cancel
