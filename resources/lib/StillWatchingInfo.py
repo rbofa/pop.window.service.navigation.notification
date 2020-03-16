@@ -118,3 +118,6 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
 
         def setStillWatching(self, stillwatching):
             self.stillwatching = stillwatching
+
+        def isStillWatching(self):
+            return self.stillwatching
