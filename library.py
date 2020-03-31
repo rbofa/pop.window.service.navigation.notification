@@ -32,7 +32,6 @@ else:
 
 __addon__ = xbmcaddon.Addon()
 
-
 class LibraryFunctions():
     def __init__(self):
         self.WINDOW = xbmcgui.Window(10000)
