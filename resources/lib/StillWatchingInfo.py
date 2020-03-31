@@ -152,5 +152,8 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
 
         pass
 
-
+    def onAction(self, action):
+        xbmc.log("still watching info action: " + str(action.getId()))
+        if action == ACTION_PLAYER_STOP:
+            self.close()
 
