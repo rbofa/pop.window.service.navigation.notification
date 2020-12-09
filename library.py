@@ -32,11 +32,11 @@ else:
 
 __addon__ = xbmcaddon.Addon()
 
+
 class LibraryFunctions():
     def __init__(self):
         self.WINDOW = xbmcgui.Window(10000)
         self.LIMIT = 20
-
 
     # Common properties used by various types of queries
     tvepisode_properties = [
@@ -71,7 +71,6 @@ class LibraryFunctions():
     inprogress_filter = {"field": "inprogress", "operator": "true", "value": ""}
     unplayed_filter = {"field": "playcount", "operator": "lessthan", "value": "1"}
     specials_filter = {"field": "season", "operator": "greaterthan", "value": "0"}
-
 
     # Construct a JSON query string from the arguments, execute it, return UTF8
     def json_query(self, method, unplayed=False, include_specials=True, properties=None, sort=False,
