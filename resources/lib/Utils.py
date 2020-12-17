@@ -1,8 +1,9 @@
-import xbmc
-import xbmcgui
-import xbmcaddon
 import inspect
 import sys
+import xbmc
+import xbmcaddon
+import xbmcgui
+
 if sys.version_info < (2, 7):
     import simplejson as json
 else:
@@ -12,6 +13,7 @@ addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
 language = addonSettings.getLocalizedString
 KODI_VERSION = int(xbmc.getInfoLabel("System.BuildVersion").split(".")[0])
 
+
 def logMsg(title, msg, level=1):
     logLevel = int(addonSettings.getSetting("logLevel"))
     WINDOW = xbmcgui.Window(10000)
@@ -19,19 +21,22 @@ def logMsg(title, msg, level=1):
     if logLevel >= level:
         if logLevel == 2:  # inspect.stack() is expensive
             try:
-                xbmc.log(title + " -> " + inspect.stack()[1][3] + " : " + str(msg),level=xbmc.LOGNOTICE)
+                xbmc.log(title + " -> " + inspect.stack()[1][3] + " : " + str(msg), level=xbmc.LOGNOTICE)
             except UnicodeEncodeError:
-                xbmc.log(title + " -> " + inspect.stack()[1][3] + " : " + str(msg.encode('utf-8')),level=xbmc.LOGNOTICE)
+                xbmc.log(title + " -> " + inspect.stack()[1][3] + " : " + str(msg.encode('utf-8')),
+                         level=xbmc.LOGNOTICE)
         else:
             try:
-                xbmc.log(title + " -> " + str(msg),level=xbmc.LOGNOTICE)
+                xbmc.log(title + " -> " + str(msg), level=xbmc.LOGNOTICE)
             except UnicodeEncodeError:
-                xbmc.log(title + " -> " + str(msg.encode('utf-8')),level=xbmc.LOGNOTICE)
+                xbmc.log(title + " -> " + str(msg.encode('utf-8')), level=xbmc.LOGNOTICE)
 
-def getJSON(method,params):
-    json_response = xbmc.executeJSONRPC('{ "jsonrpc": "2.0", "method" : "%s", "params": %s, "id":1 }' %(method, try_encode(params)))
-    jsonobject = json.loads(json_response.decode('utf-8','replace'))
-    if(jsonobject.has_key('result')):
+
+def getJSON(method, params):
+    json_response = xbmc.executeJSONRPC(
+        '{ "jsonrpc": "2.0", "method" : "%s", "params": %s, "id":1 }' % (method, try_encode(params)))
+    jsonobject = json.loads(json_response.decode('utf-8', 'replace'))
+    if (jsonobject.has_key('result')):
         jsonobject = jsonobject['result']
         if jsonobject.has_key('movies'):
             return jsonobject['movies']
@@ -40,14 +45,16 @@ def getJSON(method,params):
         elif jsonobject.has_key('episodes'):
             return jsonobject['episodes']
 
+
 def try_encode(text, encoding="utf-8"):
     try:
-        return text.encode(encoding,"ignore")
+        return text.encode(encoding, "ignore")
     except:
         return text
 
+
 def try_decode(text, encoding="utf-8"):
     try:
-        return text.decode(encoding,"ignore")
+        return text.decode(encoding, "ignore")
     except:
         return text
