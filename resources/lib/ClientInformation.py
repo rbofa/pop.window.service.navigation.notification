@@ -1,12 +1,10 @@
+import Utils as utils
+import os
 import xbmc
 import xbmcaddon
 import xbmcgui
 import xbmcvfs
-
-import os
 from uuid import uuid4 as uuid4
-
-import Utils as utils
 
 
 class ClientInformation():
@@ -36,4 +34,3 @@ class ClientInformation():
 
     def getVersion(self):
         return self.addon.getAddonInfo('version')
-
