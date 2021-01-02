@@ -12,7 +12,8 @@ import Utils as utils
 from Player import Player
 from ClientInformation import ClientInformation
 
-class Service():
+
+class Service:
     clientInfo = ClientInformation()
     addonName = clientInfo.getAddonName()
     WINDOW = xbmcgui.Window(10000)
@@ -60,18 +61,21 @@ class Service():
 
                     if xbmcgui.Window(10000).getProperty("PseudoTVRunning") != "True" and not nextUpDisabled:
 
-                        if (not showpostplay or (showpostplaypreview and showpostplay)) and (totalTime - playTime <= int(notificationtime) and (
+                        if (not showpostplay or (showpostplaypreview and showpostplay)) and (
+                                totalTime - playTime <= int(notificationtime) and (
                                 lastFile is None or lastFile != currentFile)) and totalTime != 0:
                             lastFile = currentFile
                             self.logMsg("Calling autoplayback totaltime - playtime is %s" % (totalTime - playTime), 2)
                             player.autoPlayPlayback()
                             self.logMsg("Netflix style autoplay succeeded.", 2)
 
-                        if (showpostplay and not showpostplaypreview) and (totalTime - playTime <= 10) and totalTime != 0:
+                        if (showpostplay and not showpostplaypreview) and (
+                                totalTime - playTime <= 10) and totalTime != 0:
                             self.logMsg("Calling post playback", 2)
                             player.postPlayPlayback()
 
-                        if displayrandomunwatched and (int(playTime) >= int(randomunwatchedtime)) and (int(playTime) < int(int(randomunwatchedtime)+100)) and (
+                        if displayrandomunwatched and (int(playTime) >= int(randomunwatchedtime)) and (
+                                int(playTime) < int(int(randomunwatchedtime) + 100)) and (
                                 lastUnwatchedFile is None or lastUnwatchedFile != currentFile):
                             self.logMsg("randomunwatchedtime is %s" % (int(randomunwatchedtime)), 2)
                             self.logMsg("Calling display unwatched", 2)
@@ -83,6 +87,7 @@ class Service():
                     self.logMsg("Exception in Playback Monitor Service: %s" % e)
 
         self.logMsg("======== STOP %s ========" % self.addonName, 0)
+
 
 # start the service
 Service().ServiceEntryPoint()
