@@ -1,8 +1,6 @@
-from platform import machine
-
 import xbmc
 import xbmcgui
-
+from platform import machine
 
 ACTION_PLAYER_STOP = 13
 OS_MACHINE = machine()
@@ -27,7 +25,7 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         fanartimage = self.item['art'].get('tvshow.fanart', '')
         clearartimage = self.item['art'].get('tvshow.clearart', '')
         name = self.item['label']
-        rating = str(round(float(self.item['rating']),1))
+        rating = str(round(float(self.item['rating']), 1))
         year = self.item['firstaired']
         overview = self.item['plot']
         season = self.item['season']
@@ -156,4 +154,3 @@ class StillWatchingInfo(xbmcgui.WindowXMLDialog):
         xbmc.log("still watching info action: " + str(action.getId()))
         if action == ACTION_PLAYER_STOP:
             self.close()
-
