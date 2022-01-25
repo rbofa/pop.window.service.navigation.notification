@@ -119,7 +119,8 @@ class LibraryFunctions():
             for item in json_query['result']['tvshows']:
                 if xbmc.abortRequested:
                     break
-                json_query2 = self.json_query("VideoLibrary.GetEpisodes", unplayed=True,
+                json_query2 = self.json_query("VideoLibrary.GetEpisodes",
+                                              unplayed=True,
                                               include_specials=True,
                                               properties=self.tvepisode_properties,
                                               sort={"method": "episode"}, limit=1,
