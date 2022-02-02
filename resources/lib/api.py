@@ -12,5 +12,11 @@ class Api:
 
     PLAYER_PLAYLIST = {
         'video': PLAYLIST_VIDEO,  # 1
-        'audio': PLAYLIST_MUSIC   # 0
+        'audio': PLAYLIST_MUSIC  # 0
     }
+
+    def __init__(self):
+        """Constructor for Api class"""
+        self.__dict__ = self._shared_state
+        self.data = {}
+        self.encoding = 'base64'
