@@ -20,3 +20,7 @@ class Api:
         self.__dict__ = self._shared_state
         self.data = {}
         self.encoding = 'base64'
+
+    def log(self, msg, level=2):
+        """Log wrapper"""
+        ulog(msg, name=self.__class__.__name__, level=level)
