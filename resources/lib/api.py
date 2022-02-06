@@ -24,3 +24,6 @@ class Api:
     def log(self, msg, level=2):
         """Log wrapper"""
         ulog(msg, name=self.__class__.__name__, level=level)
+
+    def has_addon_data(self):
+        return self.data
