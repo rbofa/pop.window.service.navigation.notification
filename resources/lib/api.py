@@ -27,3 +27,6 @@ class Api:
 
     def has_addon_data(self):
         return self.data
+
+    def reset_addon_data(self):
+        self.data = {}
