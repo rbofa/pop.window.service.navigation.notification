@@ -30,3 +30,9 @@ class Api:
 
     def reset_addon_data(self):
         self.data = {}
+
+    def addon_data_received(self, data, encoding='base64'):
+        self.log('addon_data_received called with data %s' % data, 2)
+        self.data = data
+        self.encoding = encoding
+
