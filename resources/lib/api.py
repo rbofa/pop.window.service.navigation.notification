@@ -36,3 +36,7 @@ class Api:
         self.data = data
         self.encoding = encoding
 
+    @staticmethod
+    def play_kodi_item(episode):
+        jsonrpc(method='Player.Open', id=0, params=dict(item=dict(episodeid=episode.get('episodeid'))))
+
