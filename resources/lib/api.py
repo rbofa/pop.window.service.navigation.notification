@@ -40,3 +40,26 @@ class Api:
     def play_kodi_item(episode):
         jsonrpc(method='Player.Open', id=0, params=dict(item=dict(episodeid=episode.get('episodeid'))))
 
+    @staticmethod
+    def _get_playerid(playerid_cache=[None]):  # pylint: disable=dangerous-default-value
+        """Function to get active player playerid"""
+
+        # We don't need to actually get playerid everytime, cache and reuse instead
+        if playerid_cache[0] is not None:
+            return playerid_cache[0]
+
+        # Sometimes Kodi gets confused and uses a music playlist for video content,
+        # so get the first active player instead, default to video player.
+        result = jsonrpc(method='Player.GetActivePlayers')
+        result = [
+            player for player in result.get('result', [{}])
+            if player.get('type', 'video') in Api.PLAYER_PLAYLIST
+        ]
+
+        playerid = get_int(result[0], 'playerid') if result else -1
+
+        if playerid == -1:
+            return None
+
+        playerid_cache[0] = playerid
+        return playerid
