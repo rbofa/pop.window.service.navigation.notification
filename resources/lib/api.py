@@ -63,3 +63,26 @@ class Api:
 
         playerid_cache[0] = playerid
         return playerid
+
+
+    @staticmethod
+    def get_playlistid(playlistid_cache=[None]):  # pylint: disable=dangerous-default-value
+        """Function to get playlistid of active player"""
+
+        # We don't need to actually get playlistid everytime, cache and reuse instead
+        if playlistid_cache[0] is not None:
+            return playlistid_cache[0]
+
+        result = jsonrpc(
+            method='Player.GetProperties',
+            params={
+                'playerid': Api._get_playerid(playerid_cache=[None]),
+                'properties': ['playlistid'],
+            }
+        )
+        result = get_int(
+            result.get('result', {}), 'playlistid', Api.PLAYER_PLAYLIST['video']
+        )
+
+        return result
+
