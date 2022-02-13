@@ -64,7 +64,6 @@ class Api:
         playerid_cache[0] = playerid
         return playerid
 
-
     @staticmethod
     def get_playlistid(playlistid_cache=[None]):  # pylint: disable=dangerous-default-value
         """Function to get playlistid of active player"""
@@ -86,3 +85,21 @@ class Api:
 
         return result
 
+    def queue_next_item(self, episode):
+        next_item = {}
+        if not self.data:
+            next_item.update(episodeid=episode.get('episodeid'))
+        elif self.data.get('play_url'):
+            next_item.update(file=self.data.get('play_url'))
+
+        if next_item:
+            jsonrpc(
+                method='Playlist.Add',
+                id=0,
+                params=dict(
+                    playlistid=Api.get_playlistid(),
+                    item=next_item
+                )
+            )
+
+        return bool(next_item)
