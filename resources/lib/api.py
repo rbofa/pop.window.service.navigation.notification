@@ -116,3 +116,15 @@ class Api:
             )
         )
         return False
+
+    @staticmethod
+    def reset_queue():
+        """Remove previously played item from video playlist"""
+        jsonrpc(
+            method='Playlist.Remove',
+            id=0,
+            params=dict(
+                playlistid=Api.get_playlistid(),
+                position=0
+            )
+        )
