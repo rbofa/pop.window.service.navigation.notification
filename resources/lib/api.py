@@ -128,3 +128,37 @@ class Api:
                 position=0
             )
         )
+
+    def get_next_in_playlist(self, position):
+        result = jsonrpc(method='Playlist.GetItems', params=dict(
+            playlistid=Api.get_playlistid(),
+            # limits are zero indexed, position is one indexed
+            limits=dict(start=position, end=position + 1),
+            properties=['art', 'dateadded', 'episode', 'file', 'firstaired', 'lastplayed',
+                        'playcount', 'plot', 'rating', 'resume', 'runtime', 'season',
+                        'showtitle', 'streamdetails', 'title', 'tvshowid', 'writer'],
+        ))
+
+        item = result.get('result', {}).get('items')
+
+        # Don't check if next item is an episode, just use it if it is there
+        if not item:  # item.get('type') != 'episode':
+            self.log('Error: no next item found in playlist', 1)
+            return None
+        item = item[0]
+
+        # Playlist item may not have had video info details set
+        # Try and populate required details if missing
+        if not item.get('title'):
+            item['title'] = item.get('label', '')
+        item['episodeid'] = get_int(item, 'id')
+        item['tvshowid'] = get_int(item, 'tvshowid')
+        # If missing season/episode, change to empty string to avoid episode
+        # formatting issues ("S-1E-1") in UpNext popup
+        if get_int(item, 'season') == -1:
+            item['season'] = ''
+        if get_int(item, 'episode') == -1:
+            item['episode'] = ''
+
+        self.log('Next item in playlist: %s' % item, 2)
+        return item
