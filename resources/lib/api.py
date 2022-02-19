@@ -173,3 +173,9 @@ def play_addon_item(self):
             'Sending %(encoding)s data to add-on to play: %(play_info)s' % dict(encoding=self.encoding, **self.data), 2)
         event(message=self.data.get('id'), data=self.data.get('play_info'), sender='upnextprovider',
               encoding=self.encoding)
+
+    def handle_addon_lookup_of_next_episode(self):
+        if not self.data:
+            return None
+        self.log('handle_addon_lookup_of_next_episode episode returning data %(next_episode)s' % self.data, 2)
+        return self.data.get('next_episode')
