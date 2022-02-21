@@ -179,3 +179,9 @@ def play_addon_item(self):
             return None
         self.log('handle_addon_lookup_of_next_episode episode returning data %(next_episode)s' % self.data, 2)
         return self.data.get('next_episode')
+
+    def handle_addon_lookup_of_current_episode(self):
+        if not self.data:
+            return None
+        self.log('handle_addon_lookup_of_current episode returning data %(current_episode)s' % self.data, 2)
+        return self.data.get('current_episode')
