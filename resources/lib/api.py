@@ -185,3 +185,8 @@ def play_addon_item(self):
             return None
         self.log('handle_addon_lookup_of_current episode returning data %(current_episode)s' % self.data, 2)
         return self.data.get('current_episode')
+
+    def notification_time(self, total_time=None):
+        # Alway use metadata, when available
+        if self.data.get('notification_time'):
+            return int(self.data.get('notification_time'))
