@@ -190,3 +190,7 @@ def play_addon_item(self):
         # Alway use metadata, when available
         if self.data.get('notification_time'):
             return int(self.data.get('notification_time'))
+
+        # Some consumers send the offset when the credits start (e.g. Netflix)
+        if total_time and self.data.get('notification_offset'):
+            return total_time - int(self.data.get('notification_offset'))
