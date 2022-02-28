@@ -194,3 +194,17 @@ def play_addon_item(self):
         # Some consumers send the offset when the credits start (e.g. Netflix)
         if total_time and self.data.get('notification_offset'):
             return total_time - int(self.data.get('notification_offset'))
+        # Use a customized notification time, when configured
+        if total_time and get_setting_bool('customAutoPlayTime'):
+            if total_time > 60 * 60:
+                return get_setting_int('autoPlayTimeXL')
+            if total_time > 40 * 60:
+                return get_setting_int('autoPlayTimeL')
+            if total_time > 20 * 60:
+                return get_setting_int('autoPlayTimeM')
+            if total_time > 10 * 60:
+                return get_setting_int('autoPlayTimeS')
+            return get_setting_int('autoPlayTimeXS')
+
+        # Use one global default, regardless of episode length
+        return get_setting_int('autoPlaySeasonTime')
