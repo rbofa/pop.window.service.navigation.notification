@@ -208,3 +208,13 @@ def play_addon_item(self):
 
         # Use one global default, regardless of episode length
         return get_setting_int('autoPlaySeasonTime')
+
+    def get_now_playing(self):
+        # Seems to work too fast loop whilst waiting for it to become active
+        result = dict()
+        while not result.get('result'):
+            result = jsonrpc(method='Player.GetActivePlayers')
+            self.log('Got active player %s' % result, 2)
+
+        if not result.get('result'):
+            return None
