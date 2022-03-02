@@ -218,3 +218,14 @@ def play_addon_item(self):
 
         if not result.get('result'):
             return None
+
+    playerid = result.get('result')[0].get('playerid')
+
+    # Get details of the playing media
+    self.log('Getting details of now playing media', 2)
+    result = jsonrpc(method='Player.GetItem', params=dict(
+        playerid=playerid,
+        properties=['episode', 'genre', 'playcount', 'plotoutline', 'season', 'showtitle', 'tvshowid'],
+    ))
+    self.log('Got details of now playing media %s' % result, 2)
+    return result
