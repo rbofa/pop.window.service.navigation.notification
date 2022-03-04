@@ -229,3 +229,12 @@ def play_addon_item(self):
     ))
     self.log('Got details of now playing media %s' % result, 2)
     return result
+
+    def handle_kodi_lookup_of_episode(self, tvshowid, current_file, include_watched, current_episode_id):
+        result = jsonrpc(method='VideoLibrary.GetEpisodes', params=dict(
+            tvshowid=tvshowid,
+            properties=['art', 'dateadded', 'episode', 'file', 'firstaired', 'lastplayed',
+                        'playcount', 'plot', 'rating', 'resume', 'runtime', 'season',
+                        'showtitle', 'streamdetails', 'title', 'tvshowid', 'writer'],
+            sort=dict(method='episode'),
+        ))
