@@ -238,3 +238,12 @@ def play_addon_item(self):
                         'showtitle', 'streamdetails', 'title', 'tvshowid', 'writer'],
             sort=dict(method='episode'),
         ))
+
+        if not result.get('result'):
+            return None
+
+        self.log('Got details of next up episode %s' % result, 2)
+        sleep(100)
+
+        # Find the next unwatched and the newest added episodes
+        return self.find_next_episode(result, current_file, include_watched, current_episode_id)
