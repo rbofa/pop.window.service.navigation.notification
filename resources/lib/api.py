@@ -247,3 +247,12 @@ def play_addon_item(self):
 
         # Find the next unwatched and the newest added episodes
         return self.find_next_episode(result, current_file, include_watched, current_episode_id)
+
+    def handle_kodi_lookup_of_current_episode(self, tvshowid, current_episode_id):
+        result = jsonrpc(method='VideoLibrary.GetEpisodes', params=dict(
+            tvshowid=tvshowid,
+            properties=['art', 'dateadded', 'episode', 'file', 'firstaired', 'lastplayed',
+                        'playcount', 'plot', 'rating', 'resume', 'runtime', 'season',
+                        'showtitle', 'streamdetails', 'title', 'tvshowid', 'writer'],
+            sort=dict(method='episode'),
+        ))
