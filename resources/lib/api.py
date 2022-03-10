@@ -256,3 +256,9 @@ def play_addon_item(self):
                         'showtitle', 'streamdetails', 'title', 'tvshowid', 'writer'],
             sort=dict(method='episode'),
         ))
+
+        if not result.get('result'):
+            return None
+
+        self.log('Find current episode called', 2)
+        sleep(100)
