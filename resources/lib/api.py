@@ -262,3 +262,14 @@ def play_addon_item(self):
 
         self.log('Find current episode called', 2)
         sleep(100)
+        # Find the next unwatched and the newest added episodes
+        episodes = result.get('result', {}).get('episodes', [])
+        for idx, episode in enumerate(episodes):
+            # Find position of current episode
+            if current_episode_id == episode.get('episodeid'):
+                self.log('Find current episode found episode in position: %d' % idx, 2)
+                return episode
+
+        # No next episode found
+        self.log('No next episode found', 1)
+        return None
