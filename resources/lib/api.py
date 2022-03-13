@@ -273,3 +273,12 @@ def play_addon_item(self):
         # No next episode found
         self.log('No next episode found', 1)
         return None
+
+    @staticmethod
+    def showtitle_to_id(title):
+        result = jsonrpc(method='VideoLibrary.GetTVShows', id='libTvShows', params=dict(properties=['title']))
+
+        for tvshow in result.get('result', {}).get('tvshows', []):
+            if tvshow.get('label') == title:
+                return tvshow.get('tvshowid')
+        return '-1'
