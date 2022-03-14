@@ -282,3 +282,12 @@ def play_addon_item(self):
             if tvshow.get('label') == title:
                 return tvshow.get('tvshowid')
         return '-1'
+
+    @staticmethod
+    def get_episode_id(showid, show_season, show_episode):
+        show_season = int(show_season)
+        show_episode = int(show_episode)
+        result = jsonrpc(method='VideoLibrary.GetEpisodes', params=dict(
+            properties=['episode', 'season'],
+            tvshowid=int(showid),
+        ))
