@@ -291,3 +291,10 @@ def play_addon_item(self):
             properties=['episode', 'season'],
             tvshowid=int(showid),
         ))
+        episodeid = 0
+        for episode in result.get('result', {}).get('episodes', []):
+            if episode.get('episodeid') and episode.get('season') == show_season and episode.get(
+                    'episode') == show_episode:
+                episodeid = episode.get('episodeid')
+
+        return episodeid
