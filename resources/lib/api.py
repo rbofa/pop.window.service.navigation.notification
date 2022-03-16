@@ -298,3 +298,7 @@ def play_addon_item(self):
                 episodeid = episode.get('episodeid')
 
         return episodeid
+
+    def find_next_episode(self, result, current_file, include_watched, current_episode_id):
+        found_match = False
+        episodes = result.get('result', {}).get('episodes', [])
