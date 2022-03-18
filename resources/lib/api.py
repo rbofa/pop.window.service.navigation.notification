@@ -302,3 +302,9 @@ def play_addon_item(self):
     def find_next_episode(self, result, current_file, include_watched, current_episode_id):
         found_match = False
         episodes = result.get('result', {}).get('episodes', [])
+
+        for episode in episodes:
+            # Find position of current episode
+            if current_episode_id == episode.get('episodeid'):
+                found_match = True
+                continue
