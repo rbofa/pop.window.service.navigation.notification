@@ -308,3 +308,6 @@ def play_addon_item(self):
             if current_episode_id == episode.get('episodeid'):
                 found_match = True
                 continue
+            # Check if it may be a multi-part episode
+            if episode.get('file') == current_file:
+                continue
