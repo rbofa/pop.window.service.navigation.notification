@@ -311,3 +311,8 @@ def play_addon_item(self):
             # Check if it may be a multi-part episode
             if episode.get('file') == current_file:
                 continue
+                # Skip already watched episodes?
+            if not include_watched and episode.get('playcount') > 0:
+                continue
+            if found_match:
+                return episode
