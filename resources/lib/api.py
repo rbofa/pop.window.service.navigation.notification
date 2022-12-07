@@ -12,7 +12,7 @@ class Api:
 
     PLAYER_PLAYLIST = {
         'video': PLAYLIST_VIDEO,  # 1
-        'audio': PLAYLIST_MUSIC  # 0
+        'audio': PLAYLIST_MUSIC   # 0
     }
 
     def __init__(self):
@@ -216,7 +216,7 @@ class Api:
         if not result.get('result'):
             return None
 
-    playerid = result.get('result')[0].get('playerid')
+        playerid = result.get('result')[0].get('playerid')
 
     # Get details of the playing media
     self.log('Getting details of now playing media', 2)
