@@ -191,6 +191,7 @@ class Api:
         # Some consumers send the offset when the credits start (e.g. Netflix)
         if total_time and self.data.get('notification_offset'):
             return total_time - int(self.data.get('notification_offset'))
+
         # Use a customized notification time, when configured
         if total_time and get_setting_bool('customAutoPlayTime'):
             if total_time > 60 * 60:
@@ -218,14 +219,14 @@ class Api:
 
         playerid = result.get('result')[0].get('playerid')
 
-    # Get details of the playing media
-    self.log('Getting details of now playing media', 2)
-    result = jsonrpc(method='Player.GetItem', params=dict(
-        playerid=playerid,
-        properties=['episode', 'genre', 'playcount', 'plotoutline', 'season', 'showtitle', 'tvshowid'],
-    ))
-    self.log('Got details of now playing media %s' % result, 2)
-    return result
+        # Get details of the playing media
+        self.log('Getting details of now playing media', 2)
+        result = jsonrpc(method='Player.GetItem', params=dict(
+            playerid=playerid,
+            properties=['episode', 'genre', 'playcount', 'plotoutline', 'season', 'showtitle', 'tvshowid'],
+        ))
+        self.log('Got details of now playing media %s' % result, 2)
+        return result
 
     def handle_kodi_lookup_of_episode(self, tvshowid, current_file, include_watched, current_episode_id):
         result = jsonrpc(method='VideoLibrary.GetEpisodes', params=dict(
