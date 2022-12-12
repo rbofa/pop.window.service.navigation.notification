@@ -260,6 +260,7 @@ class Api:
 
         self.log('Find current episode called', 2)
         sleep(100)
+
         # Find the next unwatched and the newest added episodes
         episodes = result.get('result', {}).get('episodes', [])
         for idx, episode in enumerate(episodes):
@@ -289,10 +290,10 @@ class Api:
             properties=['episode', 'season'],
             tvshowid=int(showid),
         ))
+
         episodeid = 0
         for episode in result.get('result', {}).get('episodes', []):
-            if episode.get('episodeid') and episode.get('season') == show_season and episode.get(
-                    'episode') == show_episode:
+            if episode.get('episodeid') and episode.get('season') == show_season and episode.get('episode') == show_episode:
                 episodeid = episode.get('episodeid')
 
         return episodeid
