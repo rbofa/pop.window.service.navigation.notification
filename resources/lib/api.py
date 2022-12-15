@@ -301,7 +301,6 @@ class Api:
     def find_next_episode(self, result, current_file, include_watched, current_episode_id):
         found_match = False
         episodes = result.get('result', {}).get('episodes', [])
-
         for episode in episodes:
             # Find position of current episode
             if current_episode_id == episode.get('episodeid'):
@@ -310,8 +309,12 @@ class Api:
             # Check if it may be a multi-part episode
             if episode.get('file') == current_file:
                 continue
-                # Skip already watched episodes?
+            # Skip already watched episodes?
             if not include_watched and episode.get('playcount') > 0:
                 continue
             if found_match:
                 return episode
+
+        # No next episode found
+        self.log('No next episode found', 1)
+        return None
