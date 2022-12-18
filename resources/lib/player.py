@@ -6,62 +6,11 @@ from xbmc import getCondVisibility, Player, Monitor
 from api import Api
 from state import State
 
-    def get_episode_id(self, showid, showseason, showepisode):
-        showseason = int(showseason)
-        showepisode = int(showepisode)
-        episodeid = 0
-        query = {
-            "jsonrpc": "2.0",
-            "method": "VideoLibrary.GetEpisodes",
-            "params": {
-                "properties": ["season", "episode"],
-                "tvshowid": int(showid)
-            },
-            "id": "1"
-        }
-        try:
-            json_result = json.loads(xbmc.executeJSONRPC(json.dumps(query, encoding='utf-8')))
-            if 'result' in json_result and 'episodes' in json_result['result']:
-                json_result = json_result['result']['episodes']
-                for episode in json_result:
-                    if episode['season'] == showseason and episode['episode'] == showepisode:
-                        if 'episodeid' in episode:
-                            episodeid = episode['episodeid']
-            return episodeid
-        except Exception:
-            return episodeid
 
-    def onPlayBackEnded(self):
-        self.logMsg("playback ended ", 2)
-        if self.postplaywindow is not None:
-            self.showPostPlay()
-
-    def findNextEpisode(self, result, currentFile, includeWatched):
-        self.logMsg("Find next episode called", 1)
-        position = 0
-        for episode in result["result"]["episodes"]:
-            # find position of current episode
-            if self.currentepisodeid == episode["episodeid"]:
-                # found a match so add 1 for the next and get out of here
-                position += 1
-                break
-            position += 1
-        # check if it may be a multi-part episode
-        while result["result"]["episodes"][position]["file"] == currentFile:
-            position += 1
-        # skip already watched episodes?
-        while not includeWatched and result["result"]["episodes"][position]["playcount"] > 1:
-            position += 1
-
-        # now return the episode
-        self.logMsg("Find next episode found next episode in position: " + str(position), 1)
-        try:
-            episode = result["result"]["episodes"][position]
-        except:
-            # no next episode found
-            episode = None
-
-        return episode
+class UpNextPlayer(Player):
+    """Service class for playback monitoring"""
+    last_file = None
+    track = False
 
     def findCurrentEpisode(self, result, currentFile):
         self.logMsg("Find current episode called", 1)
