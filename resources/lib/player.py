@@ -12,15 +12,11 @@ class UpNextPlayer(Player):
     last_file = None
     track = False
 
-    def findCurrentEpisode(self, result, currentFile):
-        self.logMsg("Find current episode called", 1)
-        position = 0
-        for episode in result["result"]["episodes"]:
-            # find position of current episode
-            if self.currentepisodeid == episode["episodeid"]:
-                # found a match so get out of here
-                break
-            position += 1
+    def __init__(self):
+        self.api = Api()
+        self.state = State()
+        self.monitor = Monitor()
+        Player.__init__(self)
 
         # now return the episode
         self.logMsg("Find current episode found episode in position: " + str(position), 1)
