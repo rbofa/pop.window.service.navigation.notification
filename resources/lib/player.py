@@ -18,15 +18,11 @@ class UpNextPlayer(Player):
         self.monitor = Monitor()
         Player.__init__(self)
 
-        # now return the episode
-        self.logMsg("Find current episode found episode in position: " + str(position), 1)
-        try:
-            episode = result["result"]["episodes"][position]
-        except:
-            # no next episode found
-            episode = None
+    def set_last_file(self, filename):
+        self.state.last_file = filename
 
-        return episode
+    def get_last_file(self):
+        return self.state.last_file
 
     def displayRandomUnwatched(self):
         # Get the active player
