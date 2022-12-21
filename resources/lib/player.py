@@ -24,32 +24,8 @@ class UpNextPlayer(Player):
     def get_last_file(self):
         return self.state.last_file
 
-    def displayRandomUnwatched(self):
-        # Get the active player
-        result = self.getNowPlaying()
-        if 'result' in result:
-            itemtype = result["result"]["item"]["type"]
-            if itemtype == "episode":
-                # playing an episode so find a random unwatched show from the same genre
-                genres = result["result"]["item"]["genre"]
-                if genres:
-                    genretitle = genres[0]
-                    self.logMsg("Looking up tvshow for genre " + genretitle, 2)
-                    tvshow = utils.getJSON('VideoLibrary.GetTVShows',
-                                           '{ "sort": { "order": "descending", "method": "random" }, "filter": {"and": [{"operator":"is", "field":"genre", "value":"%s"}, {"operator":"is", "field":"playcount", "value":"0"}]}, "properties": [ %s ],"limits":{"end":1} }' % (
-                                           genretitle, self.fields_tvshows))
-                if not tvshow:
-                    self.logMsg("Looking up tvshow without genre", 2)
-                    tvshow = utils.getJSON('VideoLibrary.GetTVShows',
-                                           '{ "sort": { "order": "descending", "method": "random" }, "filter": {"and": [{"operator":"is", "field":"playcount", "value":"0"}]}, "properties": [ %s ],"limits":{"end":1} }' % self.fields_tvshows)
-                self.logMsg("Got tvshow" + str(tvshow), 2)
-                tvshowid = tvshow[0]["tvshowid"]
-                if int(tvshowid) == -1:
-                    tvshowid = self.showtitle_to_id(title=itemtitle)
-                    self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
-                episode = utils.getJSON('VideoLibrary.GetEpisodes',
-                                        '{ "tvshowid": %d, "sort": {"method":"episode"}, "filter": {"and": [ {"field": "playcount", "operator": "lessthan", "value":"1"}, {"field": "season", "operator": "greaterthan", "value": "0"} ]}, "properties": [ %s ], "limits":{"end":1}}' % (
-                                        tvshowid, self.fields_episodes))
+    def is_tracking(self):
+        return self.state.track
 
                 if episode:
                     self.logMsg("Got details of next up episode %s" % str(episode), 2)
