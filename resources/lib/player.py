@@ -27,19 +27,8 @@ class UpNextPlayer(Player):
     def is_tracking(self):
         return self.state.track
 
-                if episode:
-                    self.logMsg("Got details of next up episode %s" % str(episode), 2)
-                    addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
-                    unwatchedPage = UnwatchedInfo("script-nextup-notification-UnwatchedInfo.xml",
-                                                  addonSettings.getAddonInfo('path'), "default", "1080i")
-                    unwatchedPage.setItem(episode[0])
-                    self.logMsg("Calling display unwatched", 2)
-                    unwatchedPage.show()
-                    monitor = xbmc.Monitor()
-                    monitor.waitForAbort(10)
-                    self.logMsg("Calling close unwatched", 2)
-                    unwatchedPage.close()
-                    del monitor
+    def disable_tracking(self):
+        self.state.track = False
 
     def postPlayPlayback(self):
         currentFile = xbmc.Player().getPlayingFile()
