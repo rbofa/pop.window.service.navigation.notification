@@ -30,8 +30,8 @@ class UpNextPlayer(Player):
     def disable_tracking(self):
         self.state.track = False
 
-    def postPlayPlayback(self):
-        currentFile = xbmc.Player().getPlayingFile()
+    def enable_tracking(self):
+        self.state.track = True
 
         # Get the active player
         result = self.getNowPlaying()
