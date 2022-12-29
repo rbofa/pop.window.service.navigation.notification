@@ -33,19 +33,10 @@ class UpNextPlayer(Player):
     def enable_tracking(self):
         self.state.track = True
 
-        # Get the active player
-        result = self.getNowPlaying()
-        if 'result' in result:
-            itemtype = result["result"]["item"]["type"]
-            addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
-            playMode = addonSettings.getSetting("autoPlayMode")
-            currentepisodenumber = result["result"]["item"]["episode"]
-            currentseasonid = result["result"]["item"]["season"]
-            currentshowtitle = result["result"]["item"]["showtitle"]
-            tvshowid = result["result"]["item"]["tvshowid"]
-            shortplayMode = addonSettings.getSetting("shortPlayMode")
-            shortplayNotification = addonSettings.getSetting("shortPlayNotification")
-            shortplayLength = int(addonSettings.getSetting("shortPlayLength")) * 60
+    def reset_queue(self):
+        if self.state.queued:
+            self.api.reset_queue()
+            self.state.queued = False
 
         # Try to get tvshowid by showtitle from kodidb if tvshowid is -1 like in strm streams which are added to kodi db
         if int(tvshowid) == -1:
