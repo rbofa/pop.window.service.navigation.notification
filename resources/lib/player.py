@@ -38,46 +38,12 @@ class UpNextPlayer(Player):
             self.api.reset_queue()
             self.state.queued = False
 
-        # Try to get tvshowid by showtitle from kodidb if tvshowid is -1 like in strm streams which are added to kodi db
-        if int(tvshowid) == -1:
-            tvshowid = self.showtitle_to_id(title=currentshowtitle)
-            self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
-
-        if (itemtype == "episode"):
-            # Get current episodeid
-            currentepisodeid = self.get_episode_id(showid=str(tvshowid), showseason=currentseasonid,
-                                                   showepisode=currentepisodenumber)
-        else:
-            # wtf am i doing here error.. ####
-            self.logMsg("Error: cannot determine if episode", 1)
+    def _check_video(self):
+        self.monitor.waitForAbort(5)
+        if not getCondVisibility('videoplayer.content(episodes)'):
             return
-
-        self.currentepisodeid = currentepisodeid
-        self.logMsg("Getting details of next up episode for tvshow id: " + str(tvshowid), 1)
-        if self.currenttvshowid != tvshowid:
-            self.currenttvshowid = tvshowid
-            self.playedinarow = 1
-
-        result = xbmc.executeJSONRPC(
-            '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"tvshowid": %d, '
-            '"properties": [ "title", "playcount", "season", "episode", "showtitle", "plot", '
-            '"file", "rating", "resume", "tvshowid", "art", "firstaired", "runtime", "writer", '
-            '"dateadded", "lastplayed" , "streamdetails"], "sort": {"method": "episode"}}, "id": 1}'
-            % tvshowid)
-
-        if result:
-            result = unicode(result, 'utf-8', errors='ignore')
-            result = json.loads(result)
-            self.logMsg("Got details of next up episode %s" % str(result), 2)
-            xbmc.sleep(100)
-
-            # Find the next unwatched and the newest added episodes
-            if "result" in result and "episodes" in result["result"]:
-                includeWatched = addonSettings.getSetting("includeWatched") == "true"
-                episode = self.findNextEpisode(result, currentFile, includeWatched)
-                current_episode = self.findCurrentEpisode(result, currentFile)
-                self.logMsg("episode details %s" % str(episode), 2)
-                episodeid = episode["episodeid"]
+        self.state.track = True
+        self.reset_queue()
 
                 if current_episode:
                     # we have something to show
