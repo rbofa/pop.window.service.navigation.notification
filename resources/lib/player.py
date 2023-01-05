@@ -54,31 +54,8 @@ class UpNextPlayer(Player):
             """Will be called when kodi starts playing a file"""
             self._check_video()
 
-    def autoPlayPlayback(self):
-        currentFile = xbmc.Player().getPlayingFile()
-
-        # Get the active player
-        result = self.getNowPlaying()
-        if 'result' in result:
-            itemtype = result["result"]["item"]["type"]
-
-            addonSettings = xbmcaddon.Addon(id='pop.window.service.navigation.notification')
-            playMode = addonSettings.getSetting("autoPlayMode")
-            currentepisodenumber = result["result"]["item"]["episode"]
-            currentseasonid = result["result"]["item"]["season"]
-            currentshowtitle = result["result"]["item"]["showtitle"]
-            tvshowid = result["result"]["item"]["tvshowid"]
-            shortplayMode = addonSettings.getSetting("shortPlayMode")
-            shortplayNotification = addonSettings.getSetting("shortPlayNotification")
-            shortplayLength = int(addonSettings.getSetting("shortPlayLength")) * 60
-            showpostplaypreview = addonSettings.getSetting("showPostPlayPreview") == "true"
-            showpostplay = addonSettings.getSetting("showPostPlay") == "true"
-            shouldshowpostplay = showpostplay and showpostplaypreview
-
-            # Try to get tvshowid by showtitle from kodidb if tvshowid is -1 like in strm streams which are added to kodi db
-            if int(tvshowid) == -1:
-                tvshowid = self.showtitle_to_id(title=currentshowtitle)
-                self.logMsg("Fetched missing tvshowid " + str(tvshowid), 2)
+    def onPlayBackPaused(self):  # pylint: disable=invalid-name
+        self.state.pause = True
 
             if (itemtype == "episode"):
                 # Get current episodeid
