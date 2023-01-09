@@ -60,73 +60,11 @@ class UpNextPlayer(Player):
     def onPlayBackResumed(self):  # pylint: disable=invalid-name
         self.state.pause = False
 
-                if includeWatched:
-                    includePlaycount = True
-                else:
-                    includePlaycount = episode["playcount"] == 0
-                if includePlaycount and currentepisodeid != episodeid:
-                    # we have a next up episode
-                    nextUpPage = NextUpInfo("script-nextup-notification-NextUpInfo.xml",
-                                            addonSettings.getAddonInfo('path'), "default", "1080i")
-                    nextUpPage.setItem(episode)
-                    stillWatchingPage = StillWatchingInfo(
-                        "script-nextup-notification-StillWatchingInfo.xml",
-                        addonSettings.getAddonInfo('path'), "default", "1080i")
-                    stillWatchingPage.setItem(episode)
-                    playedinarownumber = addonSettings.getSetting("playedInARow")
-                    playTime = xbmc.Player().getTime()
-                    totalTime = xbmc.Player().getTotalTime()
-                    self.logMsg("played in a row settings %s" % str(playedinarownumber), 2)
-                    self.logMsg("played in a row %s" % str(self.playedinarow), 2)
-
-                    if int(self.playedinarow) <= int(playedinarownumber):
-                        self.logMsg(
-                            "showing next up page as played in a row is %s" % str(self.playedinarow), 2)
-                        if (shortplayNotification == "false") and (shortplayLength >= totalTime) and (
-                                shortplayMode == "true"):
-                            self.logMsg("hiding notification for short videos")
-                        else:
-                            nextUpPage.show()
-                    else:
-                        self.logMsg(
-                            "showing still watching page as played in a row %s" % str(self.playedinarow), 2)
-                        if (shortplayNotification == "false") and (shortplayLength >= totalTime) and (
-                                shortplayMode == "true"):
-                            self.logMsg("hiding notification for short videos")
-                        else:
-                            stillWatchingPage.show()
-                    if shouldshowpostplay:
-                        self.postPlayPlayback()
-
-                    while xbmc.Player().isPlaying() and (
-                            totalTime - playTime > 1) and not nextUpPage.isCancel() and not nextUpPage.isWatchNow() and not stillWatchingPage.isStillWatching() and not stillWatchingPage.isCancel():
-                        xbmc.sleep(100)
-                        try:
-                            playTime = xbmc.Player().getTime()
-                            totalTime = xbmc.Player().getTotalTime()
-                        except:
-                            pass
-                    if shortplayLength >= totalTime and shortplayMode == "true":
-                        # play short video and don't add to playcount
-                        self.playedinarow += 0
-                        self.logMsg("Continuing short video autoplay - %s")
-                        if nextUpPage.isWatchNow() or stillWatchingPage.isStillWatching():
-                            self.playedinarow = 1
-                        shouldPlayDefault = not nextUpPage.isCancel()
-                    else:
-                        if int(self.playedinarow) <= int(playedinarownumber):
-                            nextUpPage.close()
-                            shouldPlayDefault = not nextUpPage.isCancel()
-                            shouldPlayNonDefault = nextUpPage.isWatchNow()
-                        else:
-                            stillWatchingPage.close()
-                            shouldPlayDefault = stillWatchingPage.isStillWatching()
-                            shouldPlayNonDefault = stillWatchingPage.isStillWatching()
-
-                        if nextUpPage.isWatchNow() or stillWatchingPage.isStillWatching():
-                            self.playedinarow = 1
-                        else:
-                            self.playedinarow += 1
+    def onPlayBackStopped(self):  # pylint: disable=invalid-name
+        """Will be called when user stops playing a file"""
+        self.reset_queue()
+        self.api.reset_addon_data()
+        self.state = State()  # Reset state
 
                     if (shouldPlayDefault and not shouldshowpostplay and playMode == "0") or (
                             shouldPlayNonDefault and shouldshowpostplay and playMode == "0") or (
