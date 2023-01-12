@@ -66,12 +66,13 @@ class UpNextPlayer(Player):
         self.api.reset_addon_data()
         self.state = State()  # Reset state
 
-                    if (shouldPlayDefault and not shouldshowpostplay and playMode == "0") or (
-                            shouldPlayNonDefault and shouldshowpostplay and playMode == "0") or (
-                            shouldPlayNonDefault and playMode == "1"):
-                        self.logMsg("playing media episode id %s" % str(episodeid), 2)
-                        # Signal to trakt previous episode watched
-                        AddonSignals.sendSignal("NEXTUPWATCHEDSIGNAL", {'episodeid': self.currentepisodeid})
+    def onPlayBackEnded(self):  # pylint: disable=invalid-name
+        """Will be called when Kodi has ended playing a file"""
+        self.reset_queue()
+        # Only reset state if not playing the next episode
+        if not self.state.playing_next:
+            self.api.reset_addon_data()
+            self.state = State()  # Reset state
 
                         # if in postplaypreview mode clear the post play window as its not needed now
                         if shouldshowpostplay:
