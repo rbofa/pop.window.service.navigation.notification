@@ -74,11 +74,8 @@ class UpNextPlayer(Player):
             self.api.reset_addon_data()
             self.state = State()  # Reset state
 
-                        # if in postplaypreview mode clear the post play window as its not needed now
-                        if shouldshowpostplay:
-                            self.postplaywindow = None
-
-                        # Play media
-                        xbmc.executeJSONRPC(
-                            '{ "jsonrpc": "2.0", "id": 0, "method": "Player.Open", '
-                            '"params": { "item": {"episodeid": ' + str(episode["episodeid"]) + '} } }')
+    def onPlayBackError(self):  # pylint: disable=invalid-name
+        """Will be called when when playback stops due to an error"""
+        self.reset_queue()
+        self.api.reset_addon_data()
+        self.state = State()  # Reset state
