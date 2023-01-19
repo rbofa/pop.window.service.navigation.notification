@@ -6,6 +6,7 @@ from xbmc import Monitor
 from api import Api
 from playbackmanager import PlaybackManager
 from player import UpNextPlayer
+from statichelper import from_unicode
 from utils import decode_json, get_property, get_setting_bool, kodi_version_major, log as ulog
 
 
@@ -22,4 +23,14 @@ class UpNextMonitor(Monitor):
     def log(self, msg, level=1):
         """Log wrapper"""
         ulog(msg, name=self.__class__.__name__, level=level)
+
+    def run(self):
+        """Main service loop"""
+        self.log('Service started', 0)
+
+        while not self.abortRequested():
+            # check every 1 sec
+            if self.waitForAbort(1):
+                # Abort was requested while waiting. We should exit
+                break
 
