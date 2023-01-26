@@ -34,3 +34,25 @@ class UpNextMonitor(Monitor):
                 # Abort was requested while waiting. We should exit
                 break
 
+            if not self.player.is_tracking():
+                continue
+
+            if bool(get_property('PseudoTVRunning') == 'True'):
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
+
+            if get_setting_bool('disableNextUp'):
+                # Next Up is disabled
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
+
+            # Method isExternalPlayer() was added in Kodi v18 onward
+            if kodi_version_major() >= 18 and self.player.isExternalPlayer():
+                self.log('Up Next tracking stopped, external player detected', 2)
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
+
+
