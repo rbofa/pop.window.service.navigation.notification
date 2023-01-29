@@ -55,4 +55,13 @@ class UpNextMonitor(Monitor):
                 self.playback_manager.demo.hide()
                 continue
 
+            last_file = self.player.get_last_file()
+            try:
+                current_file = self.player.getPlayingFile()
+            except RuntimeError:
+                self.log('Up Next tracking stopped, failed player.getPlayingFile()', 2)
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
+
 
