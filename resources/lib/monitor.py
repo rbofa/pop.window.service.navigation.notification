@@ -64,4 +64,7 @@ class UpNextMonitor(Monitor):
                 self.playback_manager.demo.hide()
                 continue
 
+            if last_file and last_file == from_unicode(current_file):
+                # Already processed this playback before
+                continue
 
