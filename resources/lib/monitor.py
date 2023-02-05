@@ -67,4 +67,10 @@ class UpNextMonitor(Monitor):
             if last_file and last_file == from_unicode(current_file):
                 # Already processed this playback before
                 continue
-
+            try:
+                total_time = self.player.getTotalTime()
+            except RuntimeError:
+                self.log('Up Next tracking stopped, failed player.getTotalTime()', 2)
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
