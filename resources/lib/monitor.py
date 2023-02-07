@@ -74,3 +74,9 @@ class UpNextMonitor(Monitor):
                 self.player.disable_tracking()
                 self.playback_manager.demo.hide()
                 continue
+
+            if total_time == 0:
+                self.log('Up Next tracking stopped, no file is playing', 2)
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
