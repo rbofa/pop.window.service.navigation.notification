@@ -80,3 +80,11 @@ class UpNextMonitor(Monitor):
                 self.player.disable_tracking()
                 self.playback_manager.demo.hide()
                 continue
+
+            try:
+                play_time = self.player.getTime()
+            except RuntimeError:
+                self.log('Up Next tracking stopped, failed player.getTime()', 2)
+                self.player.disable_tracking()
+                self.playback_manager.demo.hide()
+                continue
