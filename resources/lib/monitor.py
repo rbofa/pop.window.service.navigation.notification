@@ -88,3 +88,16 @@ class UpNextMonitor(Monitor):
                 self.player.disable_tracking()
                 self.playback_manager.demo.hide()
                 continue
+
+            notification_time = self.api.notification_time(total_time=total_time)
+            if total_time - play_time > notification_time:
+                # Media hasn't reach notification time yet, waiting a bit longer...
+                continue
+
+            self.player.set_last_file(from_unicode(current_file))
+            self.log('Show notification as episode (of length %d secs) ends in %d secs' % (total_time, notification_time), 2)
+            self.playback_manager.launch_up_next()
+            self.log('Up Next style autoplay succeeded', 2)
+            self.player.disable_tracking()
+
+            self.log('Service stopped', 0)
