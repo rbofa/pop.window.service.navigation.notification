@@ -101,3 +101,8 @@ class UpNextMonitor(Monitor):
             self.player.disable_tracking()
 
             self.log('Service stopped', 0)
+
+    def onNotification(self, sender, method, data):  # pylint: disable=invalid-name
+        """Notification event handler for accepting data from add-ons"""
+        if not method.endswith('upnext_data'):  # Method looks like Other.upnext_data
+            return
