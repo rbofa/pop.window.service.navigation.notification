@@ -106,3 +106,8 @@ class UpNextMonitor(Monitor):
         """Notification event handler for accepting data from add-ons"""
         if not method.endswith('upnext_data'):  # Method looks like Other.upnext_data
             return
+
+    decoded_data, encoding = decode_json(data)
+    if decoded_data is None:
+        self.log('Received data from sender %s is not JSON: %s' % (sender, data), 2)
+        return
