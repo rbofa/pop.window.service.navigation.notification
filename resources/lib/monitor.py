@@ -111,3 +111,9 @@ class UpNextMonitor(Monitor):
     if decoded_data is None:
         self.log('Received data from sender %s is not JSON: %s' % (sender, data), 2)
         return
+
+    self.playback_manager.handle_demo()
+    decoded_data.update(id='%s_play_action' % sender.replace('.SIGNAL', ''))
+    self.api.addon_data_received(decoded_data, encoding=encoding)
+    self.player.enable_tracking()
+    self.player.reset_queue()
