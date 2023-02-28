@@ -23,3 +23,6 @@ class PlaybackManager:
         self.state = State()
         self.player = Player()
         self.demo = DemoOverlay(12005)
+
+    def log(self, msg, level=2):
+        ulog(msg, name=self.__class__.__name__, level=level)
