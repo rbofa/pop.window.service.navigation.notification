@@ -26,3 +26,8 @@ class PlaybackManager:
 
     def log(self, msg, level=2):
         ulog(msg, name=self.__class__.__name__, level=level)
+
+    def handle_demo(self):
+        if get_setting_bool('enableDemoMode'):
+            self.log('Up Next DEMO mode enabled, skipping automatically to the end', 0)
+            self.demo.show()
