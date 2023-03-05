@@ -10,7 +10,8 @@ from playitem import PlayItem
 from state import State
 from stillwatching import StillWatching
 from upnext import UpNext
-from utils import addon_path, calculate_progress_steps, clear_property, event, get_setting_bool, get_setting_int, log as ulog, set_property
+from utils import addon_path, calculate_progress_steps, clear_property, event, get_setting_bool, get_setting_int, \
+    log as ulog, set_property
 
 
 class PlaybackManager:
@@ -31,3 +32,10 @@ class PlaybackManager:
         if get_setting_bool('enableDemoMode'):
             self.log('Up Next DEMO mode enabled, skipping automatically to the end', 0)
             self.demo.show()
+            try:
+                total_time = self.player.getTotalTime()
+                self.player.seekTime(total_time - 15)
+            except RuntimeError as exc:
+                self.log('Failed to seekTime(): %s' % exc, 0)
+        else:
+            self.demo.hide()
