@@ -39,3 +39,11 @@ class PlaybackManager:
                 self.log('Failed to seekTime(): %s' % exc, 0)
         else:
             self.demo.hide()
+
+    def launch_up_next(self):
+        enable_playlist = get_setting_bool('enablePlaylist')
+        episode, source = self.play_item.get_next()
+        self.log('Playlist setting: %s' % enable_playlist)
+        if source == 'playlist' and not enable_playlist:
+            self.log('Playlist integration disabled', 2)
+            return
