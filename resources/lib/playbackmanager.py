@@ -47,3 +47,10 @@ class PlaybackManager:
         if source == 'playlist' and not enable_playlist:
             self.log('Playlist integration disabled', 2)
             return
+        if not episode:
+            # No episode get out of here
+            self.log('Error: no episode could be found to play next...exiting', 1)
+            return
+        self.log('episode details %s' % episode, 2)
+        play_next, keep_playing = self.launch_popup(episode, source)
+        self.state.playing_next = play_next
