@@ -61,5 +61,3 @@ class PlaybackManager:
         if not keep_playing:
             self.log('Stopping playback', 2)
             self.player.stop()
-
-        self.api.reset_addon_data()
