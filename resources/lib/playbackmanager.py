@@ -54,3 +54,12 @@ class PlaybackManager:
         self.log('episode details %s' % episode, 2)
         play_next, keep_playing = self.launch_popup(episode, source)
         self.state.playing_next = play_next
+
+        # Dequeue and stop playback if not playing next file
+        if not play_next and self.state.queued:
+            self.state.queued = self.api.dequeue_next_item()
+        if not keep_playing:
+            self.log('Stopping playback', 2)
+            self.player.stop()
+
+        self.api.reset_addon_data()
