@@ -61,3 +61,10 @@ class PlaybackManager:
         if not keep_playing:
             self.log('Stopping playback', 2)
             self.player.stop()
+
+        self.api.reset_addon_data()
+
+        def launch_popup(self, episode, source=None):
+            episode_id = episode.get('episodeid')
+            no_play_count = episode.get('playcount') is None or episode.get('playcount') == 0
+            include_play_count = True if self.state.include_watched else no_play_count
