@@ -68,3 +68,9 @@ class PlaybackManager:
             episode_id = episode.get('episodeid')
             no_play_count = episode.get('playcount') is None or episode.get('playcount') == 0
             include_play_count = True if self.state.include_watched else no_play_count
+            if not include_play_count or self.state.current_episode_id == episode_id:
+                # play_next = False
+                # keep_playing = True
+                # return play_next, keep_playing
+                # Don't play next file, but keep playing current file
+                return False, True
