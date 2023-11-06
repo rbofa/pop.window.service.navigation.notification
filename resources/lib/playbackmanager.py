@@ -74,3 +74,7 @@ class PlaybackManager:
                 # return play_next, keep_playing
                 # Don't play next file, but keep playing current file
                 return False, True
+
+        # Add next file to playlist if existing playlist is not being used
+        if source != 'playlist':
+            self.state.queued = self.api.queue_next_item(episode)
