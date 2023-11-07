@@ -78,3 +78,8 @@ class PlaybackManager:
         # Add next file to playlist if existing playlist is not being used
         if source != 'playlist':
             self.state.queued = self.api.queue_next_item(episode)
+
+        # We have a next up episode choose mode
+        if get_setting_int('simpleMode') == 0:
+            next_up_page = UpNext('script-upnext-upnext-simple.xml', addon_path(), 'default', '1080i')
+            still_watching_page = StillWatching('script-upnext-stillwatching-simple.xml', addon_path(), 'default', '1080i')
