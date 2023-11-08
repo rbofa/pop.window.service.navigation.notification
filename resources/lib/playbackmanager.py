@@ -83,3 +83,6 @@ class PlaybackManager:
         if get_setting_int('simpleMode') == 0:
             next_up_page = UpNext('script-upnext-upnext-simple.xml', addon_path(), 'default', '1080i')
             still_watching_page = StillWatching('script-upnext-stillwatching-simple.xml', addon_path(), 'default', '1080i')
+        else:
+            next_up_page = UpNext('script-upnext-upnext.xml', addon_path(), 'default', '1080i')
+            still_watching_page = StillWatching('script-upnext-stillwatching.xml', addon_path(), 'default', '1080i')
