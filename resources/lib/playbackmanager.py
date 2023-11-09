@@ -86,3 +86,7 @@ class PlaybackManager:
         else:
             next_up_page = UpNext('script-upnext-upnext.xml', addon_path(), 'default', '1080i')
             still_watching_page = StillWatching('script-upnext-stillwatching.xml', addon_path(), 'default', '1080i')
+
+        showing_next_up_page, showing_still_watching_page = self.show_popup_and_wait(episode,
+                                                                                     next_up_page,
+                                                                                     still_watching_page)
