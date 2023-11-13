@@ -90,3 +90,7 @@ class PlaybackManager:
         showing_next_up_page, showing_still_watching_page = self.show_popup_and_wait(episode,
                                                                                      next_up_page,
                                                                                      still_watching_page)
+        should_play_default, should_play_non_default = self.extract_play_info(next_up_page,
+                                                                              showing_next_up_page,
+                                                                              showing_still_watching_page,
+                                                                              still_watching_page)
