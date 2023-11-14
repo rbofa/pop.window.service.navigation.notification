@@ -94,3 +94,11 @@ class PlaybackManager:
                                                                               showing_next_up_page,
                                                                               showing_still_watching_page,
                                                                               still_watching_page)
+        if not self.state.track:
+            self.log('exit launch_popup early due to disabled tracking', 2)
+            # play_next = False
+            # keep_playing = showing_next_up_page
+            # return play_next, keep_playing
+            # Don't play next file
+            # Stop if Still Watching? popup was shown to prevent unwanted playback when using FF or skip
+            return False, showing_next_up_page
