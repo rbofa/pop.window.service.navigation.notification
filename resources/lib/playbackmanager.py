@@ -102,3 +102,4 @@ class PlaybackManager:
             # Don't play next file
             # Stop if Still Watching? popup was shown to prevent unwanted playback when using FF or skip
             return False, showing_next_up_page
+        play_item_option_1 = (should_play_default and self.state.play_mode == 0)
