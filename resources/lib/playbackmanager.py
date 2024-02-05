@@ -114,3 +114,7 @@ class PlaybackManager:
                 (next_up_page.is_cancel() if showing_next_up_page else still_watching_page.is_cancel())
                 and not get_setting_bool('stopAfterClose')
             )
+
+        self.log('playing media episode', 2)
+        # Signal to trakt previous episode watched
+        event(message='NEXTUPWATCHEDSIGNAL', data=dict(episodeid=self.state.current_episode_id), encoding='base64')
