@@ -123,3 +123,6 @@ class PlaybackManager:
             if should_play_non_default:
                 # Only start the next episode if the user asked for it specifically
                 self.player.playnext()
+        elif self.api.has_addon_data():
+            # Play add-on media
+            self.api.play_addon_item()
