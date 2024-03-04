@@ -126,3 +126,6 @@ class PlaybackManager:
         elif self.api.has_addon_data():
             # Play add-on media
             self.api.play_addon_item()
+        else:
+        # Play local media
+        self.api.play_kodi_item(episode)
