@@ -129,3 +129,9 @@ class PlaybackManager:
         else:
         # Play local media
         self.api.play_kodi_item(episode)
+
+        # play_next = True
+        # keep_playing = True
+        # return play_next, keep_playing
+        # Play next file, and keep playing current file
+        return True, True
