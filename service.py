@@ -65,7 +65,7 @@ class Service:
                                 totalTime - playTime <= int(notificationtime) and (
                                 lastFile is None or lastFile != currentFile)) and totalTime != 0:
                             lastFile = currentFile
-                            self.logMsg("Calling autoplayback totaltime - playtime is %s" % (totalTime - playTime), 2)
+                            self.logMsg("Calling autoplayback totaltimes - playtime is %s" % (totalTime - playTime), 2)
                             player.autoPlayPlayback()
                             self.logMsg("Netflix style autoplay succeeded.", 2)
 
@@ -84,7 +84,7 @@ class Service:
 
 
                 except Exception as e:
-                    self.logMsg("Exception in Playback Monitor Service: %s" % e)
+                    self.logMsg("Exception in Playback Monitor Services: %s" % e)
 
         self.logMsg("======== STOP %s ========" % self.addonName, 0)
 
