@@ -102,5 +102,6 @@ Skinners (Non PostPlayMode):
           - 5002 - Season/Episode
           - 5003 - Rating
           - 5004 - Clear Logo
+          - 5005 - Enable colour
 
 
