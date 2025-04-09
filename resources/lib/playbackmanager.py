@@ -133,5 +133,5 @@ class PlaybackManager:
         # play_next = True
         # keep_playing = True
         # return play_next, keep_playing
-        # Play next file, and keep playing current file
+        # Play next file, and keep playing current file untill
         return True, True
