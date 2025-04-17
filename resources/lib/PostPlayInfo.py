@@ -28,7 +28,7 @@ class PostPlayInfo(xbmcgui.WindowXML):
         else:
             xbmcgui.WindowXML.__init__(self, *args, **kwargs)
 
-        xbmc.log("PostPlayInfo ->  init called 2", level=xbmc.LOGNOTICE)
+        xbmc.log("PostPlayInfo ->  init called 2.", level=xbmc.LOGNOTICE)
 
         self._winID = None
         self.action_exitkeys_id = [10, 13]
